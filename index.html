@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.scss">
+    <link rel="stylesheet" href="style.css">
     <title>Pasjans</title>
 </head>
 <body>
-    
+    <h6 id="numberCovered"></h6>
+    <h6 id="numberOpened"></h6>
     <div id="board">
-        <div class="deck">
-            <div class="card cardBackward"></div>
-            <div class="card cardFront"></div>
+        <div class="up">
+            <div class="deck">
+                <div id="deckCovered" class="card cardBackward"></div>
+                <div id="deckOpen" class="card openEmpty none"></div>
+            </div>
         </div>
+        
+        <div class="subStacks">
+            <div id="subStack_1" class="subStack"></div>
+            <div id="subStack_2" class="subStack"></div>
+            <div id="subStack_3" class="subStack"></div>
+            <div id="subStack_4" class="subStack"></div>
+            <div id="subStack_5" class="subStack"></div>
+            <div id="subStack_6" class="subStack"></div>
+            <div id="subStack_7" class="subStack"></div>
+            
+        </div>
+
+
     </div>
-
-
-
-
 
 
     <script src="app/Game.js" type="module"></script>
 </body>
 </html>
+
+

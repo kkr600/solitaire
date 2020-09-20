@@ -1,28 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+}
+
+.black {
+    color: black;
+}
+
+.red {
+    color: red;
+}
+
+.none {
+    background-color: green;
+}
+
+.activeCard {
+    border: 3px solid red;
+}
+
+.card {
+    width: 100px;
+    height: 130px;
+    font-weight: bold;
+    box-shadow: 0.2em 0.2em 0.5em #333;
+    cursor: pointer;
+    // box-sizing: content-box;
+    border-radius: 6px;
+}
+.cardFront {
+    background: #fff;
+    padding: 5px 5px;
+}
+
+.cardBackward {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
 #board {
     width: 80%;
     height: 80vh;
     background-color: green;
     margin: 50px auto 0 auto;
     display: flex;
-}
+    flex-direction: column;
+    
+    .up {
+        display: flex;
+        .deck {
+            display: flex;
 
-.card {
-    width: 50px;
-    height: 80px;
-	padding: 40px 20px;
-	font-weight: bold;
-	margin-right: 20px;
-    box-shadow: 0.2em 0.2em 0.5em #333;
-    cursor: pointer;
-    .cardFront {
-        background: #fff;
+
+        }
+    }
+    .subStacks {
+        width: 100%;
+        display: flex;
+        margin-top: 100px;
+        .subStack {
+            margin-right: 20px;
+            // position: relative;
+            .subStackCard {
+                // position: absolute;
+            }
+        }
     }
     
-    .cardBackward {
-        background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-    }
+
+
 }
+
+
+
 
 
 

@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.black {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+.none {
+  background-color: green;
+}
+
+.activeCard {
+  border: 3px solid red;
+}
+
+.card {
+  width: 100px;
+  height: 130px;
+  font-weight: bold;
+  -webkit-box-shadow: 0.2em 0.2em 0.5em #333;
+          box-shadow: 0.2em 0.2em 0.5em #333;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.cardFront {
+  background: #fff;
+  padding: 5px 5px;
+}
+
+.cardBackward {
+  background: #020024;
+  background: -webkit-gradient(linear, left top, right top, from(#020024), color-stop(35%, #090979), to(#00d4ff));
+  background: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
+}
+
+#board {
+  width: 80%;
+  height: 80vh;
+  background-color: green;
+  margin: 50px auto 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#board .up {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#board .up .deck {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#board .subStacks {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 100px;
+}
+
+#board .subStacks .subStack {
+  margin-right: 20px;
+}
+/*# sourceMappingURL=style.css.map */

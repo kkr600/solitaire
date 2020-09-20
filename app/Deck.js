@@ -10,10 +10,19 @@ export class Deck {
 			const j = Math.floor(Math.random() * i);
 			const temp = this.cards[i];
 			this.cards[i] = this.cards[j];
-			this.cards[j] = temp;
-		}
-
+            this.cards[j] = temp;
+        }
 		return this.cards;
+    }
+    takeCards(number) {
+        number = number === undefined ? 1 : number;
+        let deckCount = this.cards.length;
+        let from = deckCount - number;
+        let to = from + number;
+        let reception = this.cards.splice(from, to);
+        console.log(`Zostało ${this.cards.length} kart`)
+        return reception;
+        
     }
 }
 

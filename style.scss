@@ -4,6 +4,13 @@
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
      box-sizing: border-box; 
+     -webkit-touch-callout: none; /* iOS Safari */
+     -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+         -ms-user-select: none; /* Internet Explorer/Edge */
+             user-select: none; /* Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
 .black {
@@ -19,7 +26,7 @@
 }
 
 .activeCard {
-    border: 3px solid red;
+    border: 5px solid greenyellow;
 }
 
 .card {
@@ -39,6 +46,7 @@
 .cardBackward {
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    border: 3px solid white;
 }
 
 #board {
@@ -62,10 +70,11 @@
         display: flex;
         margin-top: 100px;
         .subStack {
+            width: 100px;
             margin-right: 20px;
-            // position: relative;
+            position: relative;
             .subStackCard {
-                // position: absolute;
+                position: absolute;
             }
         }
     }

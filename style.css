@@ -3,6 +3,18 @@
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
 .black {
@@ -18,7 +30,7 @@
 }
 
 .activeCard {
-  border: 3px solid red;
+  border: 5px solid greenyellow;
 }
 
 .card {
@@ -40,6 +52,7 @@
   background: #020024;
   background: -webkit-gradient(linear, left top, right top, from(#020024), color-stop(35%, #090979), to(#00d4ff));
   background: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
+  border: 3px solid white;
 }
 
 #board {
@@ -77,6 +90,12 @@
 }
 
 #board .subStacks .subStack {
+  width: 100px;
   margin-right: 20px;
+  position: relative;
+}
+
+#board .subStacks .subStack .subStackCard {
+  position: absolute;
 }
 /*# sourceMappingURL=style.css.map */

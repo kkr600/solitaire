@@ -24,15 +24,18 @@ export class Card {
 		clubs: '&clubs;'
 	};
 
-	constructor(weight, type) {
+	constructor(weight, type, color, cardIndex) {
 		this.weight = weight;
 		this.type = type;
+		this.color = color;
+		this.cardIndex = cardIndex;
 	}
 
 	render() {
 		const card = document.createElement('div');
 		card.setAttribute('class', `card ${this.type}`);
 		card.innerHTML = `${this.weight} ${this.mapTextToSign[this.type]}`;
+		card.style = `color: ${this.color}`;
 
 		return card;
 	}

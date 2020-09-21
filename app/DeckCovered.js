@@ -3,7 +3,29 @@ import { Card, Types, Weights } from './Cards.js';
 export class DeckCovered {
     cards = [];
     constructor() {
-      Types.forEach((type) => Weights.forEach((weight) => this.cards.push(new Card(weight, type))));
+      Types.forEach((type) => {
+        Weights.forEach((weight) => {
+          let color = type === "hearts" || type === "diamonds" ? "red" : "black";
+          let cardIndex = "";
+          switch (weight) {
+            case "J":
+              cardIndex = 11;
+              break;
+            case "Q":
+              cardIndex = 12;
+              break;
+            case "K":
+              cardIndex = 13;
+              break;
+            case "A":
+              cardIndex = 14;
+              break;
+            default:
+              cardIndex = weight;
+          }
+          this.cards.push(new Card(weight, type, color, cardIndex))
+        });
+      })
       this.number = this.cards.length;
     }
       shuffle() {
@@ -13,9 +35,6 @@ export class DeckCovered {
         this.cards[i] = this.cards[j];
               this.cards[j] = temp;
           }
-      // this.cards.forEach( card => {
-      //   console.log(card);
-      // })
       return this.cards;
     }
     add(cards) {
@@ -28,7 +47,6 @@ export class DeckCovered {
         this.cards.push(card[0])
       });
       this.number = this.cards.length;
-      document.querySelector("#numberCovered").innerHTML = `Kart zakrytych: ${this.number}.`;
     }
     takeCards(toTake) {
       toTake = toTake === undefined ? 1 : toTake;
@@ -36,7 +54,6 @@ export class DeckCovered {
       let to = from + toTake;
       let reception = this.cards.splice(from, to);
       this.number = this.cards.length;
-      document.querySelector("#numberCovered").innerHTML = `Kart zakrytych: ${this.number}.`;
       if (this.number === 0) {
         document.querySelector("#deckCovered").classList.remove("cardBackward");
         document.querySelector("#deckCovered").classList.add("green");

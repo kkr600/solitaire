@@ -42,9 +42,7 @@ class Game {
             if (active.activeStack.includes("subStack_")) {
                 active.deactivateStack();
                 active.setActiveStack("deckOpened");
-                console.log(this.deckOpened.cardOnTop)
                 active.setActiveCard(this.deckOpened.activate())
-                console.log('done')
             } else if (this.deckOpened.number > 0 && active.activeStack !== "deckOpened") {
                 active.setActiveCard(this.deckOpened.activate());
             } else if (this.deckOpened.number > 0 && active.activeStack === "deckOpened") {
@@ -54,8 +52,7 @@ class Game {
         })
 
         document.querySelector("#subStack_1").addEventListener('click', () => {
-            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_1.cardOnTop.color && (this.subStack_1.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
-                console.log(1);
+            if (active.activeStack === "deckOpened" && active.activeCard.color !== this.subStack_1.cardOnTop.color && (this.subStack_1.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
                 this.deckOpened.deactivate();
                 this.subStack_1.addOne(this.deckOpened.pickOne(),1);
                 this.deckOpened.add(this.deckCovered.takeCards(1));
@@ -63,8 +60,7 @@ class Game {
         })
 
         document.querySelector("#subStack_2").addEventListener('click', () => {
-            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_2.cardOnTop.color && (this.subStack_2.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
-                console.log(1);
+            if (active.activeStack === "deckOpened" && active.activeCard.color !== this.subStack_2.cardOnTop.color && (this.subStack_2.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
                 this.deckOpened.deactivate();
                 this.subStack_2.addOne(this.deckOpened.pickOne(),2);
                 this.deckOpened.add(this.deckCovered.takeCards(1));
@@ -72,8 +68,7 @@ class Game {
         })
 
         document.querySelector("#subStack_3").addEventListener('click', () => {
-            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_3.cardOnTop.color && (this.subStack_3.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
-                console.log(1);
+            if (active.activeStack === "deckOpened" && active.activeCard.color !== this.subStack_3.cardOnTop.color && (this.subStack_3.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
                 this.deckOpened.deactivate();
                 this.subStack_3.addOne(this.deckOpened.pickOne(),3);
                 this.deckOpened.add(this.deckCovered.takeCards(1));
@@ -81,8 +76,7 @@ class Game {
         })
 
         document.querySelector("#subStack_4").addEventListener('click', () => {
-            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_4.cardOnTop.color && (this.subStack_4.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
-                console.log(1);
+            if (active.activeStack === "deckOpened" && active.activeCard.color !== this.subStack_4.cardOnTop.color && (this.subStack_4.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
                 this.deckOpened.deactivate();
                 this.subStack_4.addOne(this.deckOpened.pickOne(),4);
                 this.deckOpened.add(this.deckCovered.takeCards(1));
@@ -90,8 +84,7 @@ class Game {
         })
 
         document.querySelector("#subStack_5").addEventListener('click', () => {
-            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_5.cardOnTop.color && (this.subStack_5.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
-                console.log(1);
+            if (active.activeStack === "deckOpened" && active.activeCard.color !== this.subStack_5.cardOnTop.color && (this.subStack_5.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
                 this.deckOpened.deactivate();
                 this.subStack_5.addOne(this.deckOpened.pickOne(),5);
                 this.deckOpened.add(this.deckCovered.takeCards(1));
@@ -99,8 +92,7 @@ class Game {
         })
 
         document.querySelector("#subStack_6").addEventListener('click', () => {
-            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_6.cardOnTop.color && (this.subStack_6.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
-                console.log(1);
+            if (active.activeStack === "deckOpened" && active.activeCard.color !== this.subStack_6.cardOnTop.color && (this.subStack_6.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
                 this.deckOpened.deactivate();
                 this.subStack_6.addOne(this.deckOpened.pickOne(),6);
                 this.deckOpened.add(this.deckCovered.takeCards(1));
@@ -108,8 +100,7 @@ class Game {
         })
 
         document.querySelector("#subStack_7").addEventListener('click', () => {
-            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_7.cardOnTop.color && (this.subStack_7.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
-                console.log(1);
+            if (active.activeStack === "deckOpened" && active.activeCard.color !== this.subStack_7.cardOnTop.color && (this.subStack_7.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
                 this.deckOpened.deactivate();
                 this.subStack_7.addOne(this.deckOpened.pickOne(),7);
                 this.deckOpened.add(this.deckCovered.takeCards(1));

@@ -19,7 +19,6 @@ export class SubStack {
         const choosedCardId = Array.prototype.slice.call( document.querySelector(stackNo).children ).indexOf(event.target) ;
         
         if ((active.activeStack === "" && event.target.className.includes("cardFront")) || active.activeStack === "deckCovered") {
-            console.log(`pierwsze kliknięcie`);
             const subStack = document.querySelector(stackNo);
          
             for (let i = choosedCardId; i < this.number; i++) {
@@ -27,11 +26,9 @@ export class SubStack {
                 subStack.childNodes[i].className += " activeCard";
             }
 
-            console.log(this.cardsToMove)
             active.setActiveStack(stack);
-            console.log(`aktywny stos: ${active.activeStack}`)
         } else if (active.activeStack === `subStack_${stack}`) {
-            console.log('ponowne wybranie')
+            active.deactivateStack();
         } else if (active.activeStack.includes("subStack_") && `subStack_${stack}` !== active.activeStack) {
             console.log(`próba przeniesienia, aktywny stack: ${active.activeStack}`);
         } else if (active.activeStack === "deckOpened") {
@@ -48,9 +45,6 @@ export class SubStack {
 
     moveStack(event) {
         if (active.activeStack === "" /*&& event.target.className.includes("cardFront")*/) {
-            console.log(0)
-
-
 
         }
         
@@ -93,6 +87,6 @@ export class SubStack {
         newCard.addEventListener('click', (event) => this.chooseStack(stack, event));
 
         active.deactivateStack();
-        
+
     }
 }

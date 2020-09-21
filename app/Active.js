@@ -9,10 +9,7 @@ export class Active {
     };
 
     setActiveCard(card) {
-        console.log(card)
         this.activeCard = card;
-        console.log(`aktywna karta:`);
-        console.log(this.activeCard);
     };
     deactivateCard() {
         this.activeCard = [];
@@ -28,12 +25,9 @@ export class Active {
     setActiveStack(stack) {
         this.activeStack = stack.length > 1 ? stack : `subStack_${stack}`;
         
-        console.log(`ustawienie nowego stacka: ${this.activeStack}`)
-        
         this.activeStackNo = stack;
     };
     deactivateStack(){
-        console.log(`deactivateStack`)
         if (this.activeStack.includes("subStack_")) {
             const stack = document.querySelector(`#subStack_${active.activeStackNo}`);  
             stack.childNodes.forEach( child => {
@@ -47,11 +41,6 @@ export class Active {
             break;
 
         }
-
-        // console.log(stack.childNodes[2]);
-        // stack.childNodes.forEach( child => {
-        //     child.classList.remove(" activeCard");
-        // });
 
         this.activeStack = "";
         this.activeStackNo = "";

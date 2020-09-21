@@ -1,3 +1,5 @@
+import active from "./Active.js";
+
 export class SubStack {
     cards = [];
     cardsToMove = [];
@@ -10,12 +12,53 @@ export class SubStack {
 		diamonds: '&diams;',
 		clubs: '&clubs;'
     };
+    chooseStack(stack, event) {
+        this.cardsToMove = [];
+        let stackNo = `#subStack_${stack}`;
+        
+        const choosedCardId = Array.prototype.slice.call( document.querySelector(stackNo).children ).indexOf(event.target) ;
+        
+        if ((active.activeStack === "" && event.target.className.includes("cardFront")) || active.activeStack === "deckCovered") {
+            console.log(`pierwsze kliknięcie`);
+            const subStack = document.querySelector(stackNo);
+         
+            for (let i = choosedCardId; i < this.number; i++) {
+                this.cardsToMove.push(this.cards[i]);
+                subStack.childNodes[i].className += " activeCard";
+            }
+
+            console.log(this.cardsToMove)
+            active.setActiveStack(stack);
+            console.log(`aktywny stos: ${active.activeStack}`)
+        } else if (active.activeStack === `subStack_${stack}`) {
+            console.log('ponowne wybranie')
+        } else if (active.activeStack.includes("subStack_") && `subStack_${stack}` !== active.activeStack) {
+            console.log(`próba przeniesienia, aktywny stack: ${active.activeStack}`);
+        } else if (active.activeStack === "deckOpened") {
+            console.log('wybranie po opened - tego nie może być');
+        }
+
+
+        
+    }
+    selectStack() {
+
+    }
+
+
     moveStack(event) {
-        event.target.className += " activeCard";
-        console.log(event)
-        /*if (event.targer.next !== null) {
-            this.moveStack(event.target.nextSibling)
-        }*/
+        if (active.activeStack === "" /*&& event.target.className.includes("cardFront")*/) {
+            console.log(0)
+
+
+
+        }
+        
+        // event.target.className += " activeCard";
+        // console.log(event)
+        // if (event.targer.next !== null) {
+        //     this.moveStack(event.target.nextSibling)
+        // }
     }
     addStart(cards, stack) {
         cards.forEach( (card, index) => {
@@ -33,11 +76,7 @@ export class SubStack {
             newCard.classList.add("subStackCard");
             newCard.style = `top: ${index*10}px; color: ${card.color}`;
             document.querySelector(`#subStack_${stack}`).appendChild(newCard);
-            newCard.addEventListener('click', (event)=>{
-                /*if (event.target.className.includes("cardFront")) {
-                    this.moveStack(event)
-                }*/
-            })
+            newCard.addEventListener('click', (event) => this.chooseStack(stack, event));
         })
     };
     addOne(card, stack) {
@@ -51,9 +90,9 @@ export class SubStack {
         newCard.classList.add("subStackCard");
         newCard.style = `top: ${this.number*15}px; color: ${card.color}`;
         document.querySelector(`#subStack_${stack}`).appendChild(newCard);
-        newCard.addEventListener('click', (event)=>{
-            /*if (event.target.className.includes("cardFront"))
-                this.moveStack(event)*/
-        })
+        newCard.addEventListener('click', (event) => this.chooseStack(stack, event));
+
+        active.deactivateStack();
+        
     }
 }

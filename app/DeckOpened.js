@@ -35,6 +35,7 @@ export class DeckOpened {
     pickOne() {
         let toTake = this.cards.splice(this.number-1,1)[0];
         this.number = this.cards.length;
+        this.cardOnTop = this.cards[this.number];
         return toTake[0];
     }
     render() {
@@ -54,7 +55,7 @@ export class DeckOpened {
     };
     deactivate() {
         document.querySelector("#deckOpened").classList.remove("activeCard");
-        active.deactivateStack();
+        // active.deactivateStack();
         return "";
     }
 }

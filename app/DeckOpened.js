@@ -1,3 +1,5 @@
+import active from './Active.js';
+
 export class DeckOpened {
 
     cards = [];
@@ -17,8 +19,10 @@ export class DeckOpened {
         this.number = this.cards.length;
         this.cardOnTop = card[0];
         this.render();
+        this.deactivate();
     };
     takeAll() {
+        const deckOpen = document.querySelector("#deckOpened");
         let toTake = this.cards.splice(0);
         this.number = this.cards.length;
         deckOpen.classList.remove("card");
@@ -34,7 +38,7 @@ export class DeckOpened {
         return toTake[0];
     }
     render() {
-        const deckOpen = document.querySelector("#deckOpen");
+        const deckOpen = document.querySelector("#deckOpened");
         deckOpen.classList.remove("none");
         deckOpen.classList.add("card");
         deckOpen.classList.add("cardFront");
@@ -44,16 +48,15 @@ export class DeckOpened {
     };
     activate() {
         const lastCard = this.cards[this.number-1][0];
-        document.querySelector("#deckOpen").classList.add("activeCard");
-        this.active = true;
+        document.querySelector("#deckOpened").classList.add("activeCard");
+        active.setActiveStack("deckOpened");
         return lastCard;
     };
     deactivate() {
-        document.querySelector("#deckOpen").classList.remove("activeCard");
-        this.active = false;
+        document.querySelector("#deckOpened").classList.remove("activeCard");
+        active.deactivateStack();
         return "";
     }
-    // addColor = 
 }
 
 

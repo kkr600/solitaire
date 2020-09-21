@@ -13,9 +13,9 @@ export class SubStack {
     moveStack(event) {
         event.target.className += " activeCard";
         console.log(event)
-        if (event.targer.next !== null) {
+        /*if (event.targer.next !== null) {
             this.moveStack(event.target.nextSibling)
-        }
+        }*/
     }
     addStart(cards, stack) {
         cards.forEach( (card, index) => {
@@ -34,12 +34,10 @@ export class SubStack {
             newCard.style = `top: ${index*10}px; color: ${card.color}`;
             document.querySelector(`#subStack_${stack}`).appendChild(newCard);
             newCard.addEventListener('click', (event)=>{
-                if (event.target.className.includes("cardFront")) {
+                /*if (event.target.className.includes("cardFront")) {
                     this.moveStack(event)
-                }
-            
+                }*/
             })
-          
         })
     };
     addOne(card, stack) {
@@ -54,8 +52,8 @@ export class SubStack {
         newCard.style = `top: ${this.number*15}px; color: ${card.color}`;
         document.querySelector(`#subStack_${stack}`).appendChild(newCard);
         newCard.addEventListener('click', (event)=>{
-            if (event.target.className.includes("cardFront"))
-                this.moveStack(event)
+            /*if (event.target.className.includes("cardFront"))
+                this.moveStack(event)*/
         })
     }
 }

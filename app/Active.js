@@ -1,30 +1,26 @@
 export class Active {
     setActiveCard(card) {
-        console.log(card);
-        this.activeCard = card[0];
-        console.log(this.activeCard)
+        this.activeCard = card;
+    };
+    deactivateCard() {
+        this.activeCard = [];
     };
 
     setActiveCards(cards){
         cards.forEach( card =>{
             this.activeCards.push(card[0]);
         });
-    }
+    };
+    deactivateCards() {
+        this.activeCards = [];
+    };
 
     setActiveStack(stack) {
         this.activeStack = stack;
     };
-
-    deactivateCard(card) {
-        this.activeCard = [];
-    }
-
-    deactivateCards() {
-        this.activeCards = [];
-    }
-
     deactivateStack(){
         this.activeStack = "";
+        this.deactivateCard();
     }
 }
 

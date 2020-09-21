@@ -1,0 +1,27 @@
+{
+  "homepage": "https://kkr600.github.io/solitaire/",
+  "name": "solitaire",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Game.js",
+  "dependencies": {
+    "git-dependency": "^0.1.0",
+    "node-sass": "^4.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkr600/solitaire.git"
+  },
+  "author": "Kacper Krojna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkr600/solitaire/issues"
+  },
+  "homepage": "https://github.com/kkr600/solitaire#readme"
+}

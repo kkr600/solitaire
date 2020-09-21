@@ -49,7 +49,6 @@ export class DeckCovered {
       this.number = this.cards.length;
     }
     takeCards(toTake) {
-      toTake = toTake === undefined ? 1 : toTake;
       let from = this.number - toTake;
       let to = from + toTake;
       let reception = this.cards.splice(from, to);

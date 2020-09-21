@@ -2,14 +2,9 @@ import { DeckCovered } from './DeckCovered.js';
 import { MainStacks } from './MainStacks.js';
 import { SubStack } from './SubStack.js';
 import { DeckOpened } from './DeckOpened.js';
-import { Active } from './Active.js';
 import active from './Active.js';
 
 class Game {
-
-    activePosition = "";
-    activeCard = "";
-
     start() {
         this.deckCovered = new DeckCovered();
         this.deckCovered.shuffle();
@@ -32,75 +27,79 @@ class Game {
 
         document.querySelector("#deckCovered").addEventListener('click', (event) =>{
             if (this.deckCovered.number > 0) {
-                this.deckOpened.add(this.deckCovered.takeCards());
-                //this.activeCard = this.deckOpened.deactivate();
-                active.setActiveCard(this.deckOpened.deactivate());
+                this.deckOpened.add(this.deckCovered.takeCards(1));
             } else {
                 this.deckCovered.add(this.deckOpened.takeAll());
             }
         })
 
-        document.querySelector("#deckOpen").addEventListener('click', () =>{
-            if (this.deckOpened.number > 0 && !this.deckOpened.active) {
-                this.activeCard = this.deckOpened.activate();
-            } else if (this.deckOpened.number > 0 && this.deckOpened.active) {
-                this.activeCard = this.deckOpened.deactivate();
+        document.querySelector("#deckOpened").addEventListener('click', () =>{
+            if (this.deckOpened.number > 0 && active.activeStack !== "deckOpened") {
+                active.setActiveCard(this.deckOpened.activate());
+            } else if (this.deckOpened.number > 0 && active.activeStack === "deckOpened") {
+                this.deckOpened.deactivate();
             }
         })
 
         document.querySelector("#subStack_1").addEventListener('click', () => {
-            if (this.deckOpened.active && this.activeCard.color !== this.subStack_1.cardOnTop.color && (this.subStack_1.cardOnTop.cardIndex - this.activeCard.cardIndex) == 1 ) {
+            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_1.cardOnTop.color && (this.subStack_1.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
+                this.deckOpened.deactivate();
+                this.subStack_1.addOne(this.deckOpened.pickOne(),1);
+                this.deckOpened.add(this.deckCovered.takeCards(1));
+            }
+            
+            /*if (active.activeStack === "" && this.activeCard.color !== this.subStack_1.cardOnTop.color && (this.subStack_1.cardOnTop.cardIndex - this.activeCard.cardIndex) == 1 ) {
                 this.subStack_1.addOne(this.deckOpened.pickOne(), 1);
                 this.deckOpened.add(this.deckCovered.takeCards());
-                this.activeCard = this.deckOpened.deactivate();
-            }
+                this.deckOpened.deactivate();
+            }*/
         })
 
         document.querySelector("#subStack_2").addEventListener('click', () => {
-            if (this.deckOpened.active && this.activeCard.color !== this.subStack_2.cardOnTop.color && (this.subStack_2.cardOnTop.cardIndex - this.activeCard.cardIndex) == 1 ) {
-                this.subStack_2.addOne(this.deckOpened.pickOne(), 2);
-                this.deckOpened.add(this.deckCovered.takeCards());
-                this.activeCard = this.deckOpened.deactivate();
+            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_2.cardOnTop.color && (this.subStack_2.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
+                this.deckOpened.deactivate();
+                this.subStack_2.addOne(this.deckOpened.pickOne(),2);
+                this.deckOpened.add(this.deckCovered.takeCards(1));
             }
         })
 
         document.querySelector("#subStack_3").addEventListener('click', () => {
-            if (this.deckOpened.active && this.activeCard.color !== this.subStack_3.cardOnTop.color && (this.subStack_3.cardOnTop.cardIndex - this.activeCard.cardIndex) == 1 ) {
-                this.subStack_3.addOne(this.deckOpened.pickOne(), 3);
-                this.deckOpened.add(this.deckCovered.takeCards());
-                this.activeCard = this.deckOpened.deactivate();
+            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_3.cardOnTop.color && (this.subStack_3.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
+                this.deckOpened.deactivate();
+                this.subStack_3.addOne(this.deckOpened.pickOne(),3);
+                this.deckOpened.add(this.deckCovered.takeCards(1));
             }
         })
 
         document.querySelector("#subStack_4").addEventListener('click', () => {
-            if (this.deckOpened.active && this.activeCard.color !== this.subStack_4.cardOnTop.color && (this.subStack_4.cardOnTop.cardIndex - this.activeCard.cardIndex) == 1 ) {
-                this.subStack_4.addOne(this.deckOpened.pickOne(), 4);
-                this.deckOpened.add(this.deckCovered.takeCards());
-                this.activeCard = this.deckOpened.deactivate();
+            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_4.cardOnTop.color && (this.subStack_4.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
+                this.deckOpened.deactivate();
+                this.subStack_4.addOne(this.deckOpened.pickOne(),4);
+                this.deckOpened.add(this.deckCovered.takeCards(1));
             }
         })
 
         document.querySelector("#subStack_5").addEventListener('click', () => {
-            if (this.deckOpened.active && this.activeCard.color !== this.subStack_5.cardOnTop.color && (this.subStack_5.cardOnTop.cardIndex - this.activeCard.cardIndex) == 1 ) {
-                this.subStack_5.addOne(this.deckOpened.pickOne(), 5);
-                this.deckOpened.add(this.deckCovered.takeCards());
-                this.activeCard = this.deckOpened.deactivate();
+            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_5.cardOnTop.color && (this.subStack_5.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
+                this.deckOpened.deactivate();
+                this.subStack_5.addOne(this.deckOpened.pickOne(),5);
+                this.deckOpened.add(this.deckCovered.takeCards(1));
             }
         })
 
         document.querySelector("#subStack_6").addEventListener('click', () => {
-            if (this.deckOpened.active && this.activeCard.color !== this.subStack_6.cardOnTop.color && (this.subStack_6.cardOnTop.cardIndex - this.activeCard.cardIndex) == 1 ) {
-                this.subStack_6.addOne(this.deckOpened.pickOne(), 6);
-                this.deckOpened.add(this.deckCovered.takeCards());
-                this.activeCard = this.deckOpened.deactivate();
+            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_6.cardOnTop.color && (this.subStack_6.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
+                this.deckOpened.deactivate();
+                this.subStack_6.addOne(this.deckOpened.pickOne(),6);
+                this.deckOpened.add(this.deckCovered.takeCards(1));
             }
         })
 
         document.querySelector("#subStack_7").addEventListener('click', () => {
-            if (this.deckOpened.active && this.activeCard.color !== this.subStack_7.cardOnTop.color && (this.subStack_7.cardOnTop.cardIndex - this.activeCard.cardIndex) == 1 ) {
-                this.subStack_7.addOne(this.deckOpened.pickOne(), 7);
-                this.deckOpened.add(this.deckCovered.takeCards());
-                this.activeCard = this.deckOpened.deactivate();
+            if (active.activeStack === "deckOpened" && active.setActiveCard.color !== this.subStack_7.cardOnTop.color && (this.subStack_7.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
+                this.deckOpened.deactivate();
+                this.subStack_7.addOne(this.deckOpened.pickOne(),7);
+                this.deckOpened.add(this.deckCovered.takeCards(1));
             }
         })
        

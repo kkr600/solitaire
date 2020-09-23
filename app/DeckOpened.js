@@ -60,4 +60,5 @@ export class DeckOpened {
     }
 }
 
-
+const deckOpened = new DeckOpened();
+export default deckOpened;

@@ -29,6 +29,19 @@
     border: 5px solid greenyellow;
 }
 
+.numbersLists {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 10px auto 0 auto;
+    .list_numbers {
+        width: 100px;
+        list-style-type:none;
+        margin-right: 20px;
+        font-size: .9rem;
+    }
+}
+
 .card {
     width: 100px;
     height: 130px;
@@ -53,6 +66,7 @@
     width: 80%;
     height: 80vh;
     background-color: green;
+    border-radius: 3px;
     margin: 50px auto 0 auto;
     display: flex;
     flex-direction: column;
@@ -61,8 +75,6 @@
         display: flex;
         .deck {
             display: flex;
-
-
         }
     }
     .subStacks {

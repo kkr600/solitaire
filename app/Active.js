@@ -5,7 +5,7 @@ export class Active {
         this.activeCards = [];
         this.activeStack = "";
         this.activeStackNo = "";
-        this.cardTomove = [];
+        this.cardsToMove = [];
     };
 
     setActiveCard(card) {
@@ -46,17 +46,15 @@ export class Active {
         this.activeStackNo = "";
         this.deactivateCard();
     };
-    setCardToMove(cards){
-        cards.forEach( card =>{
-            this.cardTomove.push(card[0]);
-        });
+    setCardsToMove(card){
+            // console.log(card)
+            this.cardsToMove.push(card)
     };
-    clearCardToMove(){
-        this.cardTomove = [];
+    clearCardsToMove(){
+        this.cardsToMove = [];
     };
     
 }
 
 const active = new Active();
-
 export default active;

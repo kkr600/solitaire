@@ -62,3 +62,5 @@ export class DeckCovered {
 
 }
 
+const deckCovered = new DeckCovered();
+export default deckCovered;

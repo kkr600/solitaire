@@ -1,29 +1,27 @@
 import deckCovered from './DeckCovered.js';
-import { MainStacks } from './MainStacks.js';
-import { SubStack } from './SubStack.js';
+import { mainStack_1, mainStack_2, mainStack_3, mainStack_4 } from './MainStack.js';
+import { subStack_1, subStack_2, subStack_3, subStack_4, subStack_5, subStack_6, subStack_7 } from './SubStack.js';
 import deckOpened from './DeckOpened.js';
 import active from './Active.js';
 
 class Game {
     start() {
         deckCovered.shuffle();
-        this.subStack_1 = new SubStack(1);
-        this.subStack_2 = new SubStack(2);
-        this.subStack_3 = new SubStack(3);
-        this.subStack_4 = new SubStack(4);
-        this.subStack_5 = new SubStack(5);
-        this.subStack_6 = new SubStack(6);
-        this.subStack_7 = new SubStack(7);
 
-        this.subStack_1.addStart(deckCovered.takeCards(this.subStack_1.startStack), 1);
-        this.subStack_2.addStart(deckCovered.takeCards(this.subStack_2.startStack), 2);
-        this.subStack_3.addStart(deckCovered.takeCards(this.subStack_3.startStack), 3);
-        this.subStack_4.addStart(deckCovered.takeCards(this.subStack_4.startStack), 4);
-        this.subStack_5.addStart(deckCovered.takeCards(this.subStack_5.startStack), 5);
-        this.subStack_6.addStart(deckCovered.takeCards(this.subStack_6.startStack), 6);
-        this.subStack_7.addStart(deckCovered.takeCards(this.subStack_7.startStack), 7);
+        subStack_1.addStart(deckCovered.takeCards(subStack_1.stackNo), 1);
+        subStack_2.addStart(deckCovered.takeCards(subStack_2.stackNo), 2);
+        subStack_3.addStart(deckCovered.takeCards(subStack_3.stackNo), 3);
+        subStack_4.addStart(deckCovered.takeCards(subStack_4.stackNo), 4);
+        subStack_5.addStart(deckCovered.takeCards(subStack_5.stackNo), 5);
+        subStack_6.addStart(deckCovered.takeCards(subStack_6.stackNo), 6);
+        subStack_7.addStart(deckCovered.takeCards(subStack_7.stackNo), 7);
 
-        document.querySelector("#deckCovered").addEventListener('click', (event) =>{
+        mainStack_1.start();
+        mainStack_2.start();
+        mainStack_3.start();
+        mainStack_4.start();
+
+        document.querySelector("#deckCovered").addEventListener('click', () =>{
             if (active.activeStack.includes("subStack_")) {
                 active.clearCardsToMove();
                 active.deactivateStack();
@@ -39,15 +37,20 @@ class Game {
 
         document.querySelector("#deckOpened").addEventListener('click', () =>{
             if (active.activeStack.includes("subStack_")) {
+                console.log('a')
                 active.clearCardsToMove();
                 active.deactivateStack();
                 active.setActiveStack("deckOpened");
                 active.setActiveCard(deckOpened.activate())
             } else if (deckOpened.number > 0 && active.activeStack !== "deckOpened") {
                 active.setActiveCard(deckOpened.activate());
+                console.log('b')
             } else if (deckOpened.number > 0 && active.activeStack === "deckOpened") {
                 active.deactivateStack();
-            } 
+                console.log('c') 
+            } else {
+                console.log('d')
+            }
             
         })
        

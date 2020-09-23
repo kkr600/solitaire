@@ -66,6 +66,7 @@
 .cardFront {
   background: #fff;
   padding: 5px 5px;
+  cursor: pointer;
 }
 
 .cardBackward {
@@ -110,7 +111,7 @@
   display: flex;
 }
 
-#board .up .deckTarget {
+#board .up .mainStack {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -122,12 +123,14 @@
   display: -ms-flexbox;
   display: flex;
   margin-top: 100px;
+  min-height: 130px;
 }
 
 #board .subStacks .subStack {
   width: 100px;
   margin-right: 20px;
   position: relative;
+  cursor: pointer;
 }
 
 #board .subStacks .subStack .subStackCard {

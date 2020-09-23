@@ -28,7 +28,7 @@ export class DeckCovered {
       })
       this.number = this.cards.length;
     }
-      shuffle() {
+    shuffle() {
       for (let i = this.cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * i);
         const temp = this.cards[i];

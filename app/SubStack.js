@@ -5,8 +5,8 @@ import deckCovered from './DeckCovered.js';
 export class SubStack {
     cards = [];
 
-    constructor(startStack) {
-        this.startStack = startStack;
+    constructor(stackNo) {
+        this.stackNo = stackNo;
     };
     mapTextToSign = {
 		hearts: '&hearts;',
@@ -23,22 +23,27 @@ export class SubStack {
             active.clearCardsToMove();
             const subStack = document.querySelector(stackNo);
             for (let i = choosedCardId; i < this.number; i++) {
-                active.setCardsToMove(this.cards[i]);
+                active.addCardsToMove(this.cards[i]);
                 subStack.childNodes[i].className += " activeCard";
             }
             active.setActiveStackRef(this);
             active.setActiveStack(stack);
+            
+            if (choosedCardId+1 == this.number) {
+                active.setActiveCard(this.cards[this.number-1]);
+            }
+
         } else if (active.activeStack === `subStack_${stack}`) { //ponowne wybranie
             active.clearCardsToMove();
             active.deactivateStack();
         } else if (active.activeStack.includes("subStack_") && `subStack_${stack}` !== active.activeStack) {
-
             const firstCardMovedStack = active.cardsToMove[0];
             const firstCardTargetStack = this.cards[this.number-1];
 
+
             if (firstCardMovedStack.color !== firstCardTargetStack.color && (firstCardTargetStack.cardIndex - firstCardMovedStack.cardIndex) === 1) {
                 active.cardsToMove.forEach( card => {
-                    this.addOne(card, stack);
+                    this.addOne(card);
                 });
                 this.removeCards(active.cardsToMove, active.sourceStack)
                 active.deactivateStack();
@@ -47,13 +52,20 @@ export class SubStack {
                 active.deactivateStack();
             } 
         } else if (active.activeStack === "deckOpened" && active.activeCard.color !== this.cardOnTop.color && (this.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
-                deckOpened.deactivate();
-                this.addOne(deckOpened.pickOne(),this.startStack);
-                deckOpened.add(deckCovered.takeCards(1));
+            deckOpened.deactivate();
+            this.addOne(deckOpened.pickOne());
         }
     }
     
     addStart(cards, stack) {
+        document.querySelector(`#subStack_${stack}`).addEventListener('click', () =>{
+            if (active.activeStack === "deckOpened" && active.activeCard.cardIndex == 13 && this.number === 0) {
+                deckOpened.deactivate();
+                this.addOne(deckOpened.pickOne());
+        
+            }
+    
+        })
         cards.forEach( (card, index) => {
             this.cards.push(card);
             this.number = stack;
@@ -69,14 +81,15 @@ export class SubStack {
             newCard.classList.add("subStackCard");
             newCard.style = `top: ${index*10}px; color: ${card.color}`;
             document.querySelector(`#subStack_${stack}`).appendChild(newCard);
-            newCard.addEventListener('click', (event) => this.chooseStack(stack, event));
+            newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
             const list = document.querySelector(`#list_subStack_${stack}`);
                 let element = document.createElement("li");
                 element.innerHTML = `${card.weight} ${card.type} ${card.color}`;
                 list.appendChild(element);
         })
+        this.number = cards.length;
     };
-    addOne(card, stack) {
+    addOne(card) {
         this.cards.push(card);
         this.cardOnTop = card;
         this.number = this.cards.length;
@@ -86,19 +99,40 @@ export class SubStack {
         newCard.innerHTML = `${card.weight} ${this.mapTextToSign[card.type]}`;
         newCard.classList.add("subStackCard");
         newCard.style = `top: ${this.number*15}px; color: ${card.color}`;
-        document.querySelector(`#subStack_${stack}`).appendChild(newCard);
-        newCard.addEventListener('click', (event) => this.chooseStack(stack, event));
+        document.querySelector(`#subStack_${this.stackNo}`).appendChild(newCard);
+        newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
         active.deactivateStack();
     };
+    pickOne() {
+        const cards = [];
+        const card = this.cardOnTop;
+        cards.push = this.cardOnTop;
+
+        this.removeCard();
+        return card;
+    };
+    removeCard(){
+        let newCards = active.sourceStack.cards.filter( card => {return card !== active.sourceStack.cardOnTop});
+        active.sourceStack.setCards(newCards);
+        const sourceStackDIV = document.querySelector(`#subStack_${active.sourceStack.stackNo}`);
+        sourceStackDIV.removeChild(sourceStackDIV.lastChild);
+       
+        if (active.sourceStack.number > 0)
+            active.sourceStack.showCard(active.sourceStack);
+
+    };
     removeCards(cards,sourceStack) {
+
         let newCards = [];
         cards.forEach( card => {
             newCards = sourceStack.cards.filter( element => {
                 return element !== card;
             });
-        })
+        }) 
 
-        const sourceStackDIV = document.querySelector(`#subStack_${sourceStack.startStack}`);
+        sourceStack.setNumber(newCards.length);
+
+        const sourceStackDIV = document.querySelector(`#subStack_${sourceStack.stackNo}`);
         for (let i = 0; i < cards.length; i++) {
             sourceStackDIV.removeChild(sourceStackDIV.lastChild);
         }
@@ -108,13 +142,18 @@ export class SubStack {
             sourceStack.showCard(sourceStack);
         
 
+
     };
     showCard(sourceStack) {
-        const stackDIV = document.querySelector(`#subStack_${sourceStack.startStack}`);
-        stackDIV.lastChild.classList.remove("cardBackward");
-        stackDIV.lastChild.classList.add("cardFront");
-        const lastCard = sourceStack.cards[sourceStack.number-1];
-        stackDIV.lastChild.innerHTML = `${lastCard.weight} ${this.mapTextToSign[lastCard.type]}`;
+        const stackDIV = document.querySelector(`#subStack_${sourceStack.stackNo}`);
+        if (sourceStack.number > 0) {
+            const lastCard = sourceStack.cards[sourceStack.number-1];
+            stackDIV.lastChild.classList.remove("cardBackward");
+            stackDIV.lastChild.className = `card cardFront subStackCard ${lastCard.color}`;
+            stackDIV.lastChild.innerHTML = `${lastCard.weight} ${this.mapTextToSign[lastCard.type]}`;
+            this.cardOnTop = lastCard;
+        }
+
     };
     setCards(cards){
         this.cards=[];
@@ -122,6 +161,27 @@ export class SubStack {
             this.cards.push(card)
         });
         this.number = cards.length;
+    };
+    setNumber(number) {
+        this.number = number;
     }
 
+}
+
+const subStack_1 = new SubStack(1);
+const subStack_2 = new SubStack(2);
+const subStack_3 = new SubStack(3);
+const subStack_4 = new SubStack(4);
+const subStack_5 = new SubStack(5);
+const subStack_6 = new SubStack(6);
+const subStack_7 = new SubStack(7);
+
+export {
+    subStack_1,
+    subStack_2,
+    subStack_3,
+    subStack_4,
+    subStack_5,
+    subStack_6,
+    subStack_7
 }

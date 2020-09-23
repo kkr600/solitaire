@@ -49,7 +49,7 @@ export class Active {
         this.activeStackNo = "";
         this.deactivateCard();
     };
-    setCardsToMove(card){
+    addCardsToMove(card){
             // console.log(card)
             this.cardsToMove.push(card)
     };

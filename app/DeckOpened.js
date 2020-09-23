@@ -36,17 +36,29 @@ export class DeckOpened {
     pickOne() {
         let toTake = this.cards.splice(this.number-1,1)[0];
         this.number = this.cards.length;
-        this.cardOnTop = this.cards[this.number];
+        
+        const deckOpenedDIV = document.querySelector("#deckOpened");
+        if (this.number > 0) {
+            this.cardOnTop = this.cards[this.number-1][0];
+            console.log(`powrót do karty: ${this.cardOnTop.weight} ${this.mapTextToSign[this.cardOnTop.type]} ${this.cardOnTop.color}`)
+            deckOpenedDIV.innerHTML = `${this.cardOnTop.weight} ${this.mapTextToSign[this.cardOnTop.type]}`;
+            deckOpenedDIV.className = `card cardFront subStackCard ${this.cardOnTop.color}`;
+        }
+
+        else {
+            deckOpenedDIV.classList = [];
+            deckOpenedDIV.className = "card openEmpty none";
+            deckOpenedDIV.style = "cursor: auto";
+            deckOpenedDIV.removeEventListener;
+            deckOpenedDIV.innerHTML = "";
+        } 
         return toTake[0];
     }
     render() {
         const deckOpen = document.querySelector("#deckOpened");
-        deckOpen.classList.remove("none");
-        deckOpen.classList.add("card");
-        deckOpen.classList.add("cardFront");
-        const lastCard = this.cards[this.number-1][0];
+        const lastCard = this.cardOnTop;
+        deckOpen.className = `card cardFront subStackCard ${lastCard.color}`;
         deckOpen.innerHTML = `${lastCard.weight} ${this.mapTextToSign[lastCard.type]}`;
-        deckOpen.style = `color: ${lastCard.color}`;
     };
     activate() {
         const lastCard = this.cards[this.number-1][0];

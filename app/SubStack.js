@@ -1,6 +1,6 @@
 import active from "./Active.js";
 import deckOpened from './DeckOpened.js'
-import deckCovered from './DeckCovered.js';
+import card from './Card.js';
 
 export class SubStack {
     cards = [];
@@ -22,7 +22,9 @@ export class SubStack {
         if ((active.activeStack === "" && event.target.className.includes("cardFront")) || active.activeStack === "deckCovered") {
             active.clearCardsToMove();
             const subStack = document.querySelector(stackNo);
+            console.log(`choosedCardId: ${choosedCardId}, this.number: ${this.number}`)
             for (let i = choosedCardId; i < this.number; i++) {
+                console.log(choosedCardId, ' - ', this.number)
                 active.addCardsToMove(this.cards[i]);
                 subStack.childNodes[i].className += " activeCard";
             }
@@ -39,8 +41,6 @@ export class SubStack {
         } else if (active.activeStack.includes("subStack_") && `subStack_${stack}` !== active.activeStack) {
             const firstCardMovedStack = active.cardsToMove[0];
             const firstCardTargetStack = this.cards[this.number-1];
-
-
             if (firstCardMovedStack.color !== firstCardTargetStack.color && (firstCardTargetStack.cardIndex - firstCardMovedStack.cardIndex) === 1) {
                 active.cardsToMove.forEach( card => {
                     this.addOne(card);
@@ -55,16 +55,27 @@ export class SubStack {
             deckOpened.deactivate();
             this.addOne(deckOpened.pickOne());
         }
+        event.stopPropagation();
     }
     
     addStart(cards, stack) {
+        active.activeCards;
         document.querySelector(`#subStack_${stack}`).addEventListener('click', () =>{
             if (active.activeStack === "deckOpened" && active.activeCard.cardIndex == 13 && this.number === 0) {
                 deckOpened.deactivate();
                 this.addOne(deckOpened.pickOne());
-        
+            } else if (active.activeStack.includes ("subStack_") 
+                && active.cardsToMove[active.cardsToMove.length-1].cardIndex == 13 
+                && this.number === 0 
+                && `subStack_${stack}` !== active.activeStack) {
+                    active.cardsToMove.forEach( card => {
+                        this.addOne(card);
+                    });
+                    this.removeCards(active.cardsToMove, active.sourceStack)
+                    active.deactivateStack();
+                    console.log('próba przeniesienia stosu z królem');
             }
-    
+            
         })
         cards.forEach( (card, index) => {
             this.cards.push(card);
@@ -79,6 +90,7 @@ export class SubStack {
                 newCard.classList.add("cardBackward");
             }                
             newCard.classList.add("subStackCard");
+            
             newCard.style = `top: ${index*10}px; color: ${card.color}`;
             document.querySelector(`#subStack_${stack}`).appendChild(newCard);
             newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
@@ -98,7 +110,7 @@ export class SubStack {
         newCard.classList.add("cardFront");
         newCard.innerHTML = `${card.weight} ${this.mapTextToSign[card.type]}`;
         newCard.classList.add("subStackCard");
-        newCard.style = `top: ${this.number*15}px; color: ${card.color}`;
+        newCard.style = `top: ${card.countTop(this)}px; color: ${card.color}`;
         document.querySelector(`#subStack_${this.stackNo}`).appendChild(newCard);
         newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
         active.deactivateStack();
@@ -109,6 +121,7 @@ export class SubStack {
         cards.push = this.cardOnTop;
 
         this.removeCard();
+
         return card;
     };
     removeCard(){
@@ -119,7 +132,8 @@ export class SubStack {
        
         if (active.sourceStack.number > 0)
             active.sourceStack.showCard(active.sourceStack);
-
+        active.sourceStack.setNumber(newCards.length);
+        
     };
     removeCards(cards,sourceStack) {
 
@@ -146,9 +160,9 @@ export class SubStack {
     };
     showCard(sourceStack) {
         const stackDIV = document.querySelector(`#subStack_${sourceStack.stackNo}`);
+        console.log(sourceStack)
         if (sourceStack.number > 0) {
             const lastCard = sourceStack.cards[sourceStack.number-1];
-            stackDIV.lastChild.classList.remove("cardBackward");
             stackDIV.lastChild.className = `card cardFront subStackCard ${lastCard.color}`;
             stackDIV.lastChild.innerHTML = `${lastCard.weight} ${this.mapTextToSign[lastCard.type]}`;
             this.cardOnTop = lastCard;

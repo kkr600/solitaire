@@ -39,7 +39,22 @@ export class Card {
 
 		return card;
 	}
-	countTop() {
-		
+	countTop(stack) {
+		const stackNo = stack.stackNo;
+		let divy = document.querySelector(`#subStack_${stackNo}`).childNodes;
+		let opened = [];
+		let covered = [];
+		divy.forEach( div => {
+			if (div.className.includes("cardFront")) {
+				opened.push(div)	
+			}
+			if (div.className.includes("cardBackward")) {
+				covered.push(div)	
+			}
+		});
+		return covered.length * 10 + opened.length * 25;
 	}
 }
+
+const card = new Card();
+export default card;

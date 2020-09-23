@@ -1,4 +1,4 @@
-import { Card, Types, Weights } from './Cards.js';
+import { Card, Types, Weights } from './Card.js';
 
 export class DeckCovered {
     cards = [];

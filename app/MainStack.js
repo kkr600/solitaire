@@ -19,16 +19,43 @@ export class MainStack {
         stackDIV.addEventListener( 'click', ()=>{this.select();})
     };
     select() {
-        if (this.cardIndex === 0 && active.activeCard.cardIndex === 14) {
+        console.log(active)
+        if (this.cardIndex === 0 && active.activeCard.cardIndex === 14) { 
             if (active.activeStack === "deckOpened") {
                 deckOpened.deactivate();
                 this.addOne(deckOpened.pickOne());
                 deckOpened.add(deckCovered.takeCards(1));
             } else if (active.activeStack.includes("subStack_")) {
-                this.addOne(active.sourceStack.pickOne());
-                
+                this.addOne(active.sourceStack.pickOne()); 
             }
+            this.cardIndex = this.cardOnTop.cardIndex;
             active.deactivateStack();       
+        } 
+
+        else if (this.cardOnTop.cardIndex === 14 
+            && active.activeStack.includes("subStack_") 
+            && active.activeCard.cardIndex == 2 
+            && this.cardOnTop.type === active.activeCard.type ) {
+                this.addOne(active.sourceStack.pickOne()); 
+        } else if (this.cardOnTop.cardIndex === 14 
+            && active.activeStack === "deckOpened" 
+            && active.activeCard.cardIndex == 2 
+            && this.cardOnTop.type === active.activeCard.type ) {
+                this.addOne(deckOpened.pickOne());
+
+        } 
+        
+        
+        else if (this.cardOnTop.cardIndex != 14 
+            && active.activeStack.includes("subStack_") 
+            && (active.activeCard.cardIndex - this.cardOnTop.cardIndex) === 1 
+            && this.cardOnTop.type === active.activeCard.type ) {
+                this.addOne(active.sourceStack.pickOne()); 
+            }
+        else {
+            console.log('else');
+            console.log(this);
+            console.log(active)
         }
     };
     addOne(card, where) {
@@ -37,15 +64,15 @@ export class MainStack {
         this.cardOnTop = card;
         this.number = this.cards.length;
         
-        const newCard = document.createElement("div");
-        newCard.classList.add("card");
-        newCard.classList.add("cardFront");
-        newCard.innerHTML = `${card.weight} ${this.mapTextToSign[card.type]}`;
-        newCard.classList.add("subStackCard");
-        newCard.style = `top: ${this.number*15}px; color: ${card.color}`;
-        document.querySelector(`#mainStack_${this.stackNo}`).appendChild(newCard);
-        // newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
-        // active.deactivateStack();
+        const mainStack = document.querySelector(`#mainStack_${this.stackNo}`);
+        mainStack.className = `card cardFront subStack ${this.cardOnTop.color}`;
+        mainStack.innerHTML = `${card.weight} ${this.mapTextToSign[card.type]}`;
+        // const newCard = document.createElement("div");
+        // newCard.classList.add("card");
+        // newCard.classList.add("cardFront");
+        // newCard.innerHTML = `${card.weight} ${this.mapTextToSign[card.type]}`;
+        // document.querySelector(`#mainStack_${this.stackNo}`).appendChild(newCard);
+        
     };
 }
 

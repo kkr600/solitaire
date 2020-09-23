@@ -40,7 +40,6 @@ export class DeckOpened {
         const deckOpenedDIV = document.querySelector("#deckOpened");
         if (this.number > 0) {
             this.cardOnTop = this.cards[this.number-1][0];
-            console.log(`powrót do karty: ${this.cardOnTop.weight} ${this.mapTextToSign[this.cardOnTop.type]} ${this.cardOnTop.color}`)
             deckOpenedDIV.innerHTML = `${this.cardOnTop.weight} ${this.mapTextToSign[this.cardOnTop.type]}`;
             deckOpenedDIV.className = `card cardFront subStackCard ${this.cardOnTop.color}`;
         }
@@ -57,7 +56,7 @@ export class DeckOpened {
     render() {
         const deckOpen = document.querySelector("#deckOpened");
         const lastCard = this.cardOnTop;
-        deckOpen.className = `card cardFront subStackCard ${lastCard.color}`;
+        deckOpen.className = `card cardFront subStackCard ${lastCard.color}`;//błąd
         deckOpen.innerHTML = `${lastCard.weight} ${this.mapTextToSign[lastCard.type]}`;
     };
     activate() {

@@ -42,7 +42,6 @@ export class Active {
             case "deckOpened":
                 document.querySelector("#deckOpened").classList.remove("activeCard");
             break;
-
         }
 
         this.activeStack = "";
@@ -50,7 +49,6 @@ export class Active {
         this.deactivateCard();
     };
     addCardsToMove(card){
-            // console.log(card)
             this.cardsToMove.push(card)
     };
     clearCardsToMove(){

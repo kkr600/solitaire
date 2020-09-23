@@ -26,20 +26,12 @@ export class SubStack {
                 active.setCardsToMove(this.cards[i]);
                 subStack.childNodes[i].className += " activeCard";
             }
-
+            active.setActiveStackRef(this);
             active.setActiveStack(stack);
         } else if (active.activeStack === `subStack_${stack}`) { //ponowne wybranie
             active.clearCardsToMove();
             active.deactivateStack();
         } else if (active.activeStack.includes("subStack_") && `subStack_${stack}` !== active.activeStack) {
-
-            console.log(`próba przeniesienia, aktywny stack: ${active.activeStack}`);
-            console.log('karty w aktywnym stacku:');
-            console.log(this.cards)
-            console.log(`przenoszę na stack: subStack_${stack}`);   
-            console.log('pierwsza karta z przenoszonego stosu: ',active.cardsToMove[0].weight, active.cardsToMove[0].type, active.cardsToMove[0].color );
-            console.log('karta, na którą chcę położyć stos:', this.cards[this.number-1].weight, this.cards[this.number-1].type, this.cards[this.number-1].color);
-            console.log('');
 
             const firstCardMovedStack = active.cardsToMove[0];
             const firstCardTargetStack = this.cards[this.number-1];
@@ -48,26 +40,17 @@ export class SubStack {
                 active.cardsToMove.forEach( card => {
                     this.addOne(card, stack);
                 });
-
-                this.removeCards(active.cardsToMove, active.activeStack)
-
+                this.removeCards(active.cardsToMove, active.sourceStack)
                 active.deactivateStack();
             }
             else {
-                console.log(`niedozwolony ruch`);
                 active.deactivateStack();
-
             } 
-
-
         } else if (active.activeStack === "deckOpened" && active.activeCard.color !== this.cardOnTop.color && (this.cardOnTop.cardIndex - active.activeCard.cardIndex) == 1) {
                 deckOpened.deactivate();
                 this.addOne(deckOpened.pickOne(),this.startStack);
                 deckOpened.add(deckCovered.takeCards(1));
-            console.log('wybranie po opened - tego nie może być');
         }
-
-        
     }
     
     addStart(cards, stack) {
@@ -107,19 +90,38 @@ export class SubStack {
         newCard.addEventListener('click', (event) => this.chooseStack(stack, event));
         active.deactivateStack();
     };
-    removeCards(cards,stack) {
-        console.log('obecne this:');
-        console.log(this)
-        console.log('karty przed usunięciem:');
-        console.log(this.cards);
+    removeCards(cards,sourceStack) {
         let newCards = [];
-        cards.forEach( (card, index) => {
-            newCards = this.cards.filter( element => {
+        cards.forEach( card => {
+            newCards = sourceStack.cards.filter( element => {
                 return element !== card;
             });
         })
-        console.log('karty po usunięciu:')
-        console.log(newCards);
+
+        const sourceStackDIV = document.querySelector(`#subStack_${sourceStack.startStack}`);
+        for (let i = 0; i < cards.length; i++) {
+            sourceStackDIV.removeChild(sourceStackDIV.lastChild);
+        }
+
+        sourceStack.setCards(newCards);
+        if (sourceStack.number > 0)
+            sourceStack.showCard(sourceStack);
+        
+
+    };
+    showCard(sourceStack) {
+        const stackDIV = document.querySelector(`#subStack_${sourceStack.startStack}`);
+        stackDIV.lastChild.classList.remove("cardBackward");
+        stackDIV.lastChild.classList.add("cardFront");
+        const lastCard = sourceStack.cards[sourceStack.number-1];
+        stackDIV.lastChild.innerHTML = `${lastCard.weight} ${this.mapTextToSign[lastCard.type]}`;
+    };
+    setCards(cards){
+        this.cards=[];
+        cards.forEach( card => {
+            this.cards.push(card)
+        });
+        this.number = cards.length;
     }
 
 }

@@ -30,6 +30,7 @@ export class DeckOpened {
         deckOpen.classList.add("none");
         deckOpen.innerHTML = "";
         this.cardOnTop = "";
+        toTake.reverse();
         return toTake;
     };
     pickOne() {

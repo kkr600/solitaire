@@ -6,6 +6,7 @@ export class Active {
         this.activeStack = "";
         this.activeStackNo = "";
         this.cardsToMove = [];
+        this.sourceStack;
     };
 
     setActiveCard(card) {
@@ -24,9 +25,11 @@ export class Active {
     };
     setActiveStack(stack) {
         this.activeStack = stack.length > 1 ? stack : `subStack_${stack}`;
-        
         this.activeStackNo = stack;
     };
+    setActiveStackRef(stack){
+        this.sourceStack = stack;
+    }
     deactivateStack(){
         if (this.activeStack.includes("subStack_")) {
             const stack = document.querySelector(`#subStack_${active.activeStackNo}`);  

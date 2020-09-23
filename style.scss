@@ -48,7 +48,7 @@
     font-weight: bold;
     box-shadow: 0.2em 0.2em 0.5em #333;
     cursor: pointer;
-    // box-sizing: content-box;
+    margin-right: 20px;
     border-radius: 6px;
 }
 .cardFront {
@@ -65,6 +65,7 @@
 #board {
     width: 80%;
     height: 80vh;
+    padding: 10px 15px;
     background-color: green;
     border-radius: 3px;
     margin: 50px auto 0 auto;
@@ -73,7 +74,12 @@
     
     .up {
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         .deck {
+            display: flex;
+        }
+        .deckTarget {
             display: flex;
         }
     }

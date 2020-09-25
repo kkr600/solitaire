@@ -31,15 +31,14 @@ export class Card {
 		this.cardIndex = cardIndex;
 	}
 
-	render() {
-		const card = document.createElement('div');
-		card.setAttribute('class', `card ${this.type}`);
-		card.innerHTML = `${this.weight} ${this.mapTextToSign[this.type]}`;
-		card.style = `color: ${this.color}`;
-
-		return card;
-	}
-	countTop(stack) {
+	render(card, site) {
+		const cardDIV = document.createElement('div');
+		cardDIV.className = `card ${site} ${card.color}`;
+		cardDIV.innerHTML = site === 'cardFront' ? `${card.weight} ${this.mapTextToSign[card.type]}` : '';
+		
+		return cardDIV;
+	};
+	countTop(stack, start) {
 		const stackNo = stack.stackNo;
 		let divy = document.querySelector(`#subStack_${stackNo}`).childNodes;
 		let opened = [];
@@ -52,9 +51,10 @@ export class Card {
 				covered.push(div)	
 			}
 		});
-		return covered.length * 10 + opened.length * 25;
+		return start === 'start' ? divy.length * 10 : (covered.length+1) * 10 + opened.length * 25;
 	}
 }
 
 const card = new Card();
+
 export default card;

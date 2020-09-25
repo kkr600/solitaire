@@ -1,12 +1,14 @@
 import active from "./Active.js";
 import deckOpened from "./DeckOpened.js";
 import deckCovered from "./DeckCovered.js";
+import card from "./Card.js";
 
 export class MainStack {
     cards = [];
     cardIndex = 0;
     constructor(stackNo) {
         this.stackNo = stackNo;
+        this.name = `mainStack_${stackNo}`;
     };
     mapTextToSign = {
 		hearts: '&hearts;',
@@ -19,59 +21,77 @@ export class MainStack {
         stackDIV.addEventListener( 'click', ()=>{this.select();})
     };
     select() {
-        console.log(active)
-        if (this.cardIndex === 0 && active.activeCard.cardIndex === 14) { 
-            if (active.activeStack === "deckOpened") {
-                deckOpened.deactivate();
+        
+
+        if (Object.keys(active.activeCard).length  
+            && this.cardIndex === 0 && active.activeCard.cardIndex === 14) { 
+            if (active.activeStack.name === "deckOpened") {
+                active.deactivateStack();
                 this.addOne(deckOpened.pickOne());
                 deckOpened.add(deckCovered.takeCards(1));
-            } else if (active.activeStack.includes("subStack_")) {
-                this.addOne(active.sourceStack.pickOne()); 
+                console.log('tutaj')
+            } else if (active.activeStack.name.includes("subStack_")) {
+                console.log('tutaj')
+                this.addOne(active.sourceStack.pickOneToMain()); 
             }
+            console.log('tutaj')
             this.cardIndex = this.cardOnTop.cardIndex;
             active.deactivateStack();       
-        } 
 
-        else if (this.cardOnTop.cardIndex === 14 
-            && active.activeStack.includes("subStack_") 
+        } else if (Object.keys(active.activeCard).length 
+            && this.cardOnTop.cardIndex === 14 
+            && active.activeStack.name === "deckOpened" 
             && active.activeCard.cardIndex == 2 
             && this.cardOnTop.type === active.activeCard.type ) {
-                this.addOne(active.sourceStack.pickOne()); 
-        } else if (this.cardOnTop.cardIndex === 14 
-            && active.activeStack === "deckOpened" 
-            && active.activeCard.cardIndex == 2 
-            && this.cardOnTop.type === active.activeCard.type ) {
+                console.log('tutaj')
                 this.addOne(deckOpened.pickOne());
 
+        } else if (Object.keys(active.activeCard).length 
+            && this.cardOnTop.cardIndex > 0 && this.cardOnTop.cardIndex < 14 
+            && active.activeStack.name === "deckOpened"
+            && (active.activeCard.cardIndex - this.cardOnTop.cardIndex) === 1 
+            && this.cardOnTop.type === active.activeCard.type ) {
+                console.log('tutaj')
+                this.addOne(deckOpened.pickOne());
+
+        } else if (Object.keys(active.activeCard).length 
+            && this.cardOnTop.cardIndex === 14 
+            && active.activeStack.name.includes("subStack_")  
+            && active.activeCard.cardIndex == 2 
+            && this.cardOnTop.type === active.activeCard.type ) {
+                console.log('tutaj')
+                this.addOne(active.sourceStack.pickOneToMain());
+                    
+        } else if (Object.keys(active.activeCard).length 
+            && this.cardOnTop.cardIndex > 0 && this.cardOnTop.cardIndex < 14 
+            && active.activeStack.name.includes("subStack_") 
+            && (active.activeCard.cardIndex - this.cardOnTop.cardIndex) === 1 
+            && this.cardOnTop.type === active.activeCard.type) {
+                this.addOne(active.sourceStack.pickOneToMain()); 
         } 
-        
-        
+       
+         /*  
         else if (this.cardOnTop.cardIndex != 14 
             && active.activeStack.includes("subStack_") 
             && (active.activeCard.cardIndex - this.cardOnTop.cardIndex) === 1 
             && this.cardOnTop.type === active.activeCard.type ) {
-                this.addOne(active.sourceStack.pickOne()); 
-            }
+                this.addOne(active.sourceStack.pickOneToMain()); 
+            }*/
         else {
             console.log('else');
             console.log(this);
             console.log(active)
         }
+        active.deactivateStack();
     };
-    addOne(card, where) {
-        where = ""
-        this.cards.push(card);
-        this.cardOnTop = card;
+    addOne(newCard) {
+        this.cards.push(newCard);
+        this.cardOnTop = newCard;
         this.number = this.cards.length;
-        
         const mainStack = document.querySelector(`#mainStack_${this.stackNo}`);
-        mainStack.className = `card cardFront subStack ${this.cardOnTop.color}`;
-        mainStack.innerHTML = `${card.weight} ${this.mapTextToSign[card.type]}`;
-        // const newCard = document.createElement("div");
-        // newCard.classList.add("card");
-        // newCard.classList.add("cardFront");
-        // newCard.innerHTML = `${card.weight} ${this.mapTextToSign[card.type]}`;
-        // document.querySelector(`#mainStack_${this.stackNo}`).appendChild(newCard);
+        if (mainStack.childNodes.length > 0)
+            mainStack.removeChild(mainStack.lastChild)
+        mainStack.appendChild(card.render(newCard, "cardFront"));
         
     };
 }

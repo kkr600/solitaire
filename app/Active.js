@@ -3,15 +3,17 @@ export class Active {
     constructor(){
         this.activeCard = [];
         this.activeCards = [];
-        this.activeStack = "";
-        this.activeStackNo = "";
+        this.activeStack = {};
         this.cardsToMove = [];
         this.sourceStack;
     };
 
     setActiveCard(card) {
         this.activeCard = card;
+        const div = document.querySelector(`#${this.activeStack.name}`);
+        div.lastChild.classList.add("activeCard");
     };
+
     deactivateCard() {
         this.activeCard = [];
     };
@@ -24,28 +26,19 @@ export class Active {
         this.activeCards = [];
     };
     setActiveStack(stack) {
-        this.activeStack = stack.length > 1 ? stack : `subStack_${stack}`;
-        this.activeStackNo = stack;
+        this.activeStack = stack;
     };
-    setActiveStackRef(stack){
+    setSourceStack(stack){
         this.sourceStack = stack;
-    }
+    };
     deactivateStack(){
-        if (this.activeStack.includes("subStack_")) {
-            const stack = document.querySelector(`#subStack_${active.activeStackNo}`);  
-            stack.childNodes.forEach( child => {
-                child.classList.remove("activeCard");
-            })
-        }
+        const DIVs = document.querySelectorAll('.activeCard');
+        DIVs.forEach( div => {
+            div.classList.remove("activeCard")
+        })
         
-        switch(this.activeStack) {
-            case "deckOpened":
-                document.querySelector("#deckOpened").classList.remove("activeCard");
-            break;
-        }
-
-        this.activeStack = "";
-        this.activeStackNo = "";
+        this.activeStack = {};
+        this.sourceStack = {};
         this.deactivateCard();
     };
     addCardsToMove(card){

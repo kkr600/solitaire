@@ -2,6 +2,7 @@ import { Card, Types, Weights } from './Card.js';
 
 export class DeckCovered {
     cards = [];
+    name = 'deckCovered';
     constructor() {
       Types.forEach((type) => {
         Weights.forEach((weight) => {

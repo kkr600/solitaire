@@ -20,39 +20,23 @@ class Game {
         mainStack_2.start();
         mainStack_3.start();
         mainStack_4.start();
-
+        
         document.querySelector("#deckCovered").addEventListener('click', () =>{
-            if (active.activeStack.includes("subStack_")) {
-                active.clearCardsToMove();
-                active.deactivateStack();
-            }
+
             if (deckCovered.number > 0) {
                 deckOpened.add(deckCovered.takeCards(1));
-                active.setActiveStack("deckCovered");
-            } else {
+            } else if (deckCovered.number === 0) {
                 deckCovered.add(deckOpened.takeAll());
-                active.setActiveStack("deckCovered");
-            }
-        })
-
-        document.querySelector("#deckOpened").addEventListener('click', () =>{
-            if (active.activeStack.includes("subStack_")) {
-                console.log('a')
-                active.clearCardsToMove();
-                active.deactivateStack();
-                active.setActiveStack("deckOpened");
-                active.setActiveCard(deckOpened.activate())
-            } else if (deckOpened.number > 0 && active.activeStack !== "deckOpened") {
-                active.setActiveCard(deckOpened.activate());
-                console.log('b')
-            } else if (deckOpened.number > 0 && active.activeStack === "deckOpened") {
-                active.deactivateStack();
-                console.log('c') 
-            } else {
-                console.log('d')
             }
             
+            if (Object.keys(active.activeStack).length > 0) {
+                active.deactivateStack();
+            }
+            
+            
         })
+
+        
        
     }
     deactivateAll() {

@@ -25,15 +25,12 @@ class Game {
 
             if (deckCovered.number > 0) {
                 deckOpened.add(deckCovered.takeCards(1));
-            } else if (deckCovered.number === 0) {
+            } else if (deckCovered.number === 0 && deckOpened.number > 0) {
                 deckCovered.add(deckOpened.takeAll());
-            }
-            
-            if (Object.keys(active.activeStack).length > 0) {
-                active.deactivateStack();
-            }
-            
-            
+            } else {
+                console.log("koniec kart")
+            }   
+            active.deactivateStack();         
         })
 
         

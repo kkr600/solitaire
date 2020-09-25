@@ -10,12 +10,6 @@ export class SubStack {
         this.stackNo = stackNo;
         this.name = `subStack_${stackNo}`
     };
-    mapTextToSign = {
-		hearts: '&hearts;',
-		spades: '&spades;',
-		diamonds: '&diams;',
-		clubs: '&clubs;'
-    };
 
     addStart(cards, stack) {
         const stackDIV = document.querySelector(`#subStack_${stack}`);
@@ -62,12 +56,10 @@ export class SubStack {
             }
 
         } else if (Object.keys(active.activeStack).length && active.activeStack.name === this.name) { //ponowne wybranie
-            console.log('ponowne wybranie')
             active.clearCardsToMove();
             active.deactivateStack();
 
         } else if (Object.keys(active.activeStack).length && active.activeStack.name.includes("subStack_") && this.name !== active.activeStack.name) { //próba przeniesienia
-            console.log('próba przeniesienia')
             const firstCardMovedStack = active.cardsToMove[0];
             const firstCardTargetStack = this.cards[this.number-1];
 
@@ -77,33 +69,28 @@ export class SubStack {
                 });
                 this.removeCards(active.cardsToMove, active.sourceStack)
             }
-            
             active.deactivateStack();
 
         } else if (Object.keys(active.activeStack).length && active.activeStack.name === "deckOpened"
             && active.activeStack.cardOnTop.color !== this.cardOnTop.color
             && (this.cardOnTop.cardIndex - active.activeStack.cardOnTop.cardIndex) === 1) {
-
             this.addOne(deckOpened.pickOne());
             deckOpened.add(deckCovered.takeCards(1));
-        }
-        else {
-            console.log('else');
-            console.log(active.activeStack)
+        } else {
+            active.deactivateStack();
         }
         
         event.stopPropagation();
     }
-    
-
 
     selectEmptyStack() {
+        
         if (Object.keys(active.activeStack).length && active.activeStack.name === "deckOpened" && active.activeCard.cardIndex == 13 && this.number === 0) {
             this.addOne(deckOpened.pickOne());
             console.log('położyłem króla na pusty')
         } else if (Object.keys(active.activeStack).length 
             && active.activeStack.name.includes("subStack_") 
-            && active.cardsToMove[active.cardsToMove.length-1].cardIndex == 13 
+            && active.cardsToMove[0].cardIndex == 13 
             && this.number === 0 
             && `subStack_${this.stackNo}` !== active.activeStack) {
                 active.cardsToMove.forEach( card => {
@@ -112,6 +99,8 @@ export class SubStack {
                 this.removeCards(active.cardsToMove, active.sourceStack)
                 active.deactivateStack();
                 console.log('próba przeniesienia stosu z królem');
+        } else {
+            console.log('else')
         }
         active.deactivateStack();
     };
@@ -127,7 +116,6 @@ export class SubStack {
 
         stackDIV.appendChild(newCard);
         newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
-        // active.deactivateStack();
     };
     pickOneToMain() {
         const cardTemp = this.cardOnTop;
@@ -137,7 +125,6 @@ export class SubStack {
     removeCard(){
         
         let newCards = active.sourceStack.cards.filter( card => {return card !== active.activeStack.cards[active.activeStack.number-1]});
-        // console.log(newCards)
         active.sourceStack.setCards(newCards);
         const sourceStackDIV = document.querySelector(`#subStack_${active.sourceStack.stackNo}`);
         sourceStackDIV.removeChild(sourceStackDIV.lastChild);
@@ -155,6 +142,7 @@ export class SubStack {
         let nubmerCardToRemove = cards.length;
 
         newCards = sourceStack.cards.slice(0, sourceStack.cards.length - nubmerCardToRemove);
+
         
         const sourceStackDIV = document.querySelector(`#subStack_${sourceStack.stackNo}`);
         for (let i = 0; i < cards.length; i++) {
@@ -164,23 +152,26 @@ export class SubStack {
         sourceStack.setCards(newCards);
 
         if (sourceStack.number > 0) {
+            this.cardOnTop = this.cards[this.cards.length-1]
             sourceStack.showCard(sourceStack);
         }
-
+        
     };
     showCard(sourceStack) {
-        console.log(sourceStack)
         const stackDIV = document.querySelector(`#subStack_${sourceStack.stackNo}`);
+
         if (sourceStack.number > 0) {
+            stackDIV.removeChild(stackDIV.lastChild);
             const lastCard = sourceStack.cards[sourceStack.number-1];
-            stackDIV.lastChild.className = `card cardFront subStackCard ${lastCard.color}`;
-            stackDIV.lastChild.innerHTML = `${lastCard.weight} ${this.mapTextToSign[lastCard.type]}`;
+            const newCard = card.render(lastCard, 'cardFront');
+            newCard.classList.add("subStackCard");
+            newCard.setAttribute('style', `top: ${card.countTop(this)}px`);
+            stackDIV.appendChild(newCard);
+            newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
             this.cardOnTop = lastCard;
         }
     };
-    setCards(cards){
-        console.log('ustawienie kart');
-        
+    setCards(cards){        
         this.cards=[];
         cards.forEach( card => {
             this.cards.push(card)

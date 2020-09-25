@@ -11,12 +11,6 @@ export class DeckOpened {
     constructor() {
     };
     
-    mapTextToSign = {
-		hearts: '&hearts;',
-		spades: '&spades;',
-		diamonds: '&diams;',
-		clubs: '&clubs;'
-	};
     add(cardToAdd) {
         this.cards.push(cardToAdd);
         this.number = this.cards.length;
@@ -24,12 +18,12 @@ export class DeckOpened {
         const deckOpen = document.querySelector("#deckOpened");
         if (deckOpen.childNodes.length > 0) {
             deckOpen.removeChild(deckOpen.lastChild);
-            
         }
         deckOpen.appendChild(card.render(this.cardOnTop, 'cardFront'));
-        deckOpen.firstChild.addEventListener('click', () => {
+        deckOpen.lastChild.addEventListener('click', () => {
             this.select();
         });
+
         active.deactivateStack();
     };
     select() {
@@ -38,10 +32,8 @@ export class DeckOpened {
             active.deactivateStack();
             active.setActiveStack(this);
             active.setActiveCard(this.cardOnTop);
-            console.log('a')
         } else if (active.activeStack.name === "deckOpened") {
             active.deactivateStack();
-            console.log('b')
         } else {
             console.log('c')
         }
@@ -68,6 +60,9 @@ export class DeckOpened {
             this.cardOnTop = this.cards[this.number-1][0];
             deckOpenedDIV.removeChild(deckOpenedDIV.lastChild);
             deckOpenedDIV.appendChild(card.render(this.cardOnTop,'cardFront')); 
+            deckOpenedDIV.lastChild.addEventListener('click', () => {
+                this.select();
+            });
         }
         else {
             deckOpenedDIV.classList = [];

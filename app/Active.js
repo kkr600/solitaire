@@ -40,6 +40,7 @@ export class Active {
         this.activeStack = {};
         this.sourceStack = {};
         this.deactivateCard();
+        this.clearCardsToMove();
     };
     addCardsToMove(card){
             this.cardsToMove.push(card)

@@ -10,12 +10,6 @@ export class MainStack {
         this.stackNo = stackNo;
         this.name = `mainStack_${stackNo}`;
     };
-    mapTextToSign = {
-		hearts: '&hearts;',
-		spades: '&spades;',
-		diamonds: '&diams;',
-		clubs: '&clubs;'
-    };
     start() {
         const stackDIV = document.querySelector(`#mainStack_${this.stackNo}`);
         stackDIV.addEventListener( 'click', ()=>{this.select();})
@@ -29,12 +23,9 @@ export class MainStack {
                 active.deactivateStack();
                 this.addOne(deckOpened.pickOne());
                 deckOpened.add(deckCovered.takeCards(1));
-                console.log('tutaj')
             } else if (active.activeStack.name.includes("subStack_")) {
-                console.log('tutaj')
                 this.addOne(active.sourceStack.pickOneToMain()); 
             }
-            console.log('tutaj')
             this.cardIndex = this.cardOnTop.cardIndex;
             active.deactivateStack();       
 
@@ -43,7 +34,6 @@ export class MainStack {
             && active.activeStack.name === "deckOpened" 
             && active.activeCard.cardIndex == 2 
             && this.cardOnTop.type === active.activeCard.type ) {
-                console.log('tutaj')
                 this.addOne(deckOpened.pickOne());
 
         } else if (Object.keys(active.activeCard).length 
@@ -51,7 +41,6 @@ export class MainStack {
             && active.activeStack.name === "deckOpened"
             && (active.activeCard.cardIndex - this.cardOnTop.cardIndex) === 1 
             && this.cardOnTop.type === active.activeCard.type ) {
-                console.log('tutaj')
                 this.addOne(deckOpened.pickOne());
 
         } else if (Object.keys(active.activeCard).length 
@@ -59,7 +48,6 @@ export class MainStack {
             && active.activeStack.name.includes("subStack_")  
             && active.activeCard.cardIndex == 2 
             && this.cardOnTop.type === active.activeCard.type ) {
-                console.log('tutaj')
                 this.addOne(active.sourceStack.pickOneToMain());
                     
         } else if (Object.keys(active.activeCard).length 

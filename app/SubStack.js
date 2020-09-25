@@ -78,6 +78,9 @@ export class SubStack {
             deckOpened.add(deckCovered.takeCards(1));
         } else {
             active.deactivateStack();
+            active.clearCardsToMove();
+            active.setActiveStack(this);
+            active.setSourceStack(this);
         }
         
         event.stopPropagation();

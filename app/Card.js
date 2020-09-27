@@ -58,7 +58,7 @@ export class Card {
 		}		
 		if (window.screen.width >= 1440) {
 			spaceCover = 10;
-			spaceOpen = 30;
+			spaceOpen = 25;
 		}	
 		divy.forEach( div => {
 			if (div.className.includes("cardFront")) {

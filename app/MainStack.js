@@ -20,7 +20,6 @@ export class MainStack {
             if (active.activeStack.name === "deckOpened") {
                 active.deactivateStack();
                 this.addOne(deckOpened.pickOne());
-                deckOpened.add(deckCovered.takeCards(1));
             } else if (active.activeStack.name.includes("subStack_")) {
                 this.addOne(active.sourceStack.pickOneToMain()); 
             }
@@ -76,6 +75,16 @@ export class MainStack {
             mainStack.removeChild(mainStack.lastChild)
         mainStack.appendChild(card.render(newCard, "cardFront"));
     };
+    pickOne() {
+        const div = document.querySelector(`#${active.activeStack.name}`);
+        console.log(active.activeStack.name);
+        let cardTemp = active.activeStack.cardOnTop;
+        active.activeStack.cards.pop();
+        let newCard = active.activeStack.cards[active.activeStack.cards.length-1]
+        div.removeChild(div.lastChild);
+        div.appendChild(card.render(newCard, "cardFront"));
+        return cardTemp;
+    }
 }
 
 const mainStack_1 = new MainStack(1);

@@ -1,6 +1,6 @@
 import active from "./Active.js";
 import deckOpened from './DeckOpened.js';
-import deckCovered from './DeckCovered.js';
+import mainStack from './DeckCovered.js';
 import card from './Card.js';
 
 export class SubStack {
@@ -60,8 +60,13 @@ export class SubStack {
         } else if (Object.keys(active.activeStack).length && active.activeStack.name === "deckOpened"
             && active.activeStack.cardOnTop.color !== this.cardOnTop.color
             && (this.cardOnTop.cardIndex - active.activeStack.cardOnTop.cardIndex) === 1) {
-            this.addOne(deckOpened.pickOne());
-            deckOpened.add(deckCovered.takeCards(1));
+                this.addOne(deckOpened.pickOne());
+                active.deactivateStack();
+        } else if (Object.keys(active.activeStack).length && active.activeStack.name.includes("mainStack_")
+            && active.activeStack.cardOnTop.color !== this.cardOnTop.color
+            && (this.cardOnTop.cardIndex - active.activeStack.cardOnTop.cardIndex) === 1) {
+                this.addOne(active.activeStack.pickOne());
+                active.deactivateStack();
         } else {
             active.deactivateStack();
             active.clearCardsToMove();

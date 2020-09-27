@@ -40,6 +40,23 @@ export class Card {
 		let divy = document.querySelector(`#subStack_${stackNo}`).childNodes;
 		let opened = [];
 		let covered = [];
+		let spaceCover = 10;
+		let spaceOpen = 25;
+		if (window.screen.width >= 568) {
+			spaceOpen = 18;
+		} 
+		if (window.screen.width >= 667) {
+			spaceOpen = 22;
+		}
+		if (window.screen.width >= 1024) {
+			spaceCover = 15;
+			spaceOpen = 30;
+		}
+		if (window.screen.width >= 1366) {
+			spaceCover = 20;
+			spaceOpen = 35;
+		}		
+
 		divy.forEach( div => {
 			if (div.className.includes("cardFront")) {
 				opened.push(div)	
@@ -47,7 +64,7 @@ export class Card {
 				covered.push(div)	
 			}
 		});
-		return start === 'start' ? divy.length * 10 : (covered.length+1) * 10 + opened.length * 25;
+		return start === 'start' ? divy.length * spaceCover : (covered.length+1) * spaceCover + opened.length * spaceOpen;
 	}
 }
 

@@ -15,6 +15,7 @@
   user-select: none;
   /* Non-prefixed version, currently
                                    supported by Chrome, Edge, Opera and Firefox */
+  font-family: Lato;
 }
 
 .black {
@@ -27,17 +28,6 @@
 
 .none {
   background-color: green;
-}
-
-.card {
-  width: 100px;
-  height: 130px;
-  font-weight: bold;
-  -webkit-box-shadow: 0.2em 0.2em 0.5em #333;
-          box-shadow: 0.2em 0.2em 0.5em #333;
-  cursor: pointer;
-  margin-right: 20px;
-  border-radius: 6px;
 }
 
 .activeCard {
@@ -57,67 +47,139 @@
   border: 3px solid white;
 }
 
-#board {
-  max-width: 900px;
-  min-height: 80vh;
-  padding: 10px 15px;
-  background-color: green;
-  border-radius: 3px;
-  margin: 50px auto 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+@media (orientation: portrait) {
+  #board {
+    display: none;
+  }
+  .information {
+    display: block;
+  }
 }
 
-#board .up {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+@media (min-width: 568px) and (orientation: landscape) {
+  .information {
+    display: none;
+  }
+  .card {
+    width: 60px;
+    height: 75px;
+    font-weight: bold;
+    font-size: .7rem;
+    -webkit-box-shadow: 0.2em 0.2em 0.5em #333;
+            box-shadow: 0.2em 0.2em 0.5em #333;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  #board {
+    min-height: 100vh;
+    padding: 10px 15px;
+    background-color: green;
+    border-radius: 3px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #board .up {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  #board .up .deck {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #board .up .deck div:first-child {
+    margin-right: 20px;
+  }
+  #board .up .mainStack {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #board .up .mainStack div:not(:last-child) {
+    margin-right: 20px;
+  }
+  #board .subStacks {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    margin-top: 20px;
+    min-height: 75px;
+  }
+  #board .subStacks .subStack {
+    width: 60px;
+    position: relative;
+    cursor: pointer;
+  }
+  #board .subStacks .subStack .subStackCard {
+    position: absolute;
+  }
 }
 
-#board .up .deck {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+@media (min-width: 667px) and (orientation: landscape) {
+  .card {
+    width: 80px;
+    height: 105px;
+    font-size: .8rem;
+  }
+  #board .subStacks .subStack {
+    width: 80px;
+  }
 }
 
-#board .up .mainStack {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+@media (min-width: 1024px) and (orientation: landscape) {
+  .card {
+    width: 120px;
+    height: 145px;
+    font-size: 1.1rem;
+  }
+  #board .up {
+    padding: 20px 15px;
+  }
+  #board .subStacks {
+    margin-top: 120px;
+  }
+  #board .subStacks .subStack {
+    width: 120px;
+  }
 }
 
-#board .subStacks {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-top: 100px;
-  min-height: 130px;
-}
-
-#board .subStacks .subStack {
-  width: 100px;
-  margin-right: 20px;
-  position: relative;
-  cursor: pointer;
-}
-
-#board .subStacks .subStack .subStackCard {
-  position: absolute;
+@media (min-width: 1366px) and (orientation: landscape) {
+  .card {
+    width: 160px;
+    height: 205px;
+    font-size: 1.6rem;
+    border-radius: 8px;
+  }
+  .cardBackward {
+    border: 5px solid white;
+  }
+  .activeCard {
+    border: 10px solid greenyellow;
+  }
+  #board .up {
+    padding: 20px 15px;
+  }
+  #board .subStacks {
+    margin-top: 120px;
+  }
+  #board .subStacks .subStack {
+    width: 160px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

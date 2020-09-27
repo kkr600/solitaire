@@ -11,6 +11,7 @@
          -ms-user-select: none; /* Internet Explorer/Edge */
              user-select: none; /* Non-prefixed version, currently
                                    supported by Chrome, Edge, Opera and Firefox */
+    font-family: Lato;
 }
 
 .black {
@@ -25,15 +26,7 @@
     background-color: green;
 }
 
-.card {
-    width: 100px;
-    height: 130px;
-    font-weight: bold;
-    box-shadow: 0.2em 0.2em 0.5em #333;
-    cursor: pointer;
-    margin-right: 20px;
-    border-radius: 6px;
-}
+
 
 .activeCard {
     border: 5px solid greenyellow;
@@ -51,52 +44,130 @@
     border: 3px solid white;
 }
 
-#board {
-    max-width: 900px;
-    min-height: 80vh;
-    padding: 10px 15px;
-    background-color: green;
-    border-radius: 3px;
-    margin: 50px auto 0 auto;
-    display: flex;
-    flex-direction: column;
-    .up {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        .deck {
-            display: flex;
-        }
-        .mainStack {
-            display: flex;
-        }
+@media (orientation: portrait) {
+    #board {
+        display: none;
     }
-    .subStacks {
-        width: 100%;
+    .information {
+        display: block;
+    }
+}
+
+@media (min-width: 568px) and (orientation: landscape) {
+    .information {
+        display: none;
+    }
+    .card {
+        width: 60px;
+        height: 75px;
+        font-weight: bold;
+        font-size: .7rem;
+        box-shadow: 0.2em 0.2em 0.5em #333;
+        cursor: pointer;
+        border-radius: 6px;
+        
+    }
+
+    #board {
+        min-height: 100vh;
+        padding: 10px 15px;
+        background-color: green;
+        border-radius: 3px;
         display: flex;
-        justify-content: space-between;
-        margin-top: 100px;
-        min-height: 130px;
-        .subStack {
-            width: 100px;
-            margin-right: 20px;
-            position: relative;
-            cursor: pointer;
-            .subStackCard {
-                position: absolute;
+        flex-direction: column;
+        .up {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .deck {
+                display: flex;
+                div:first-child {
+                    margin-right: 20px;
+                }
+            }
+            .mainStack {
+                display: flex;
+                div:not(:last-child) {
+                    margin-right: 20px;
+                }
+            }
+        }
+        .subStacks {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            min-height: 75px;
+            .subStack {
+                width: 60px;
+                position: relative;
+                cursor: pointer;
+                .subStackCard {
+                    position: absolute;
+                }
             }
         }
     }
 }
 
+@media (min-width: 667px) and (orientation: landscape) {
+    .card {
+        width: 80px;
+        height: 105px;
+        font-size: .8rem;
+    }
+    #board {
+        .subStacks {
+            .subStack {
+                width: 80px;
+            }
+        }
+    }
+}
 
+@media (min-width: 1024px) and (orientation: landscape) {
+    .card {
+        width: 120px;
+        height: 145px;
+        font-size: 1.1rem;
+    }
+    #board {
+        .up {
+            padding: 20px 15px;
+        }
+        .subStacks {
+            margin-top: 120px;
+            .subStack {
+                width: 120px;
+            }
+        }
+    }
+}
 
-
-
-
-
-
-
-
+@media (min-width: 1366px) and (orientation: landscape) {
+    .card {
+        width: 160px;
+        height: 205px;
+        font-size: 1.6rem;
+        border-radius: 8px;
+    }
+    .cardBackward {
+        border: 5px solid white;
+    }
+    .activeCard {
+        border: 10px solid greenyellow;
+    }
+    #board {
+        .up {
+            padding: 20px 15px;
+        }
+        .subStacks {
+            margin-top: 120px;
+            .subStack {
+                width: 160px;
+            }
+        }
+    }
+}
 
 

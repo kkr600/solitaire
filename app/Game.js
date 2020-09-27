@@ -32,10 +32,14 @@ class Game {
         document.querySelector('#board').addEventListener('click', () =>{
             active.deactivateStack();
         })        
+        // window.addEventListener("orientationchange", function(event) {
+        //     location.reload();
+        //   });
     }
     deactivateAll() {
         activeCard = deckOpened.deactivate();
     }
+    
 }
 
 const game = new Game();

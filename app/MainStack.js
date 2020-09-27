@@ -16,23 +16,16 @@ export class MainStack {
     };
     select() {
         if (Object.keys(active.activeCard).length  
-            && this.cardIndex === 0 && active.activeCard.cardIndex === 14) { 
-            if (active.activeStack.name === "deckOpened") {
-                active.deactivateStack();
-                this.addOne(deckOpened.pickOne());
-            } else if (active.activeStack.name.includes("subStack_")) {
-                this.addOne(active.sourceStack.pickOneToMain()); 
-            }
-            this.cardIndex = this.cardOnTop.cardIndex;
-            active.deactivateStack();       
-        } else if (Object.keys(active.activeCard).length 
-            && this.cardOnTop !== undefined
-            && this.cardOnTop.cardIndex === 14 
-            && active.activeStack.name === "deckOpened" 
-            && active.activeCard.cardIndex == 2 
-            && this.cardOnTop.type === active.activeCard.type ) {
-                this.addOne(deckOpened.pickOne());
-                active.deactivateStack();
+            && this.cardIndex === 0 
+            && active.activeCard.cardIndex === 1) { 
+                if (active.activeStack.name === "deckOpened") {
+                    active.deactivateStack();
+                    this.addOne(deckOpened.pickOne());
+                } else if (active.activeStack.name.includes("subStack_")) {
+                    this.addOne(active.sourceStack.pickOneToMain()); 
+                }
+                this.cardIndex = this.cardOnTop.cardIndex;
+                active.deactivateStack();       
         } else if (Object.keys(active.activeCard).length 
             && this.cardOnTop !== undefined
             && this.cardOnTop.cardIndex > 0 && this.cardOnTop.cardIndex < 14 
@@ -41,14 +34,6 @@ export class MainStack {
             && this.cardOnTop.type === active.activeCard.type ) {
                 this.addOne(deckOpened.pickOne());
                 active.deactivateStack();
-        } else if (Object.keys(active.activeCard).length 
-            && this.cardOnTop !== undefined
-            && this.cardOnTop.cardIndex === 14 
-            && active.activeStack.name.includes("subStack_")  
-            && active.activeCard.cardIndex == 2 
-            && this.cardOnTop.type === active.activeCard.type ) {
-                this.addOne(active.sourceStack.pickOneToMain());
-                active.deactivateStack();    
         } else if (Object.keys(active.activeCard).length 
             && this.cardOnTop !== undefined
             && this.cardOnTop.cardIndex > 0 && this.cardOnTop.cardIndex < 14 

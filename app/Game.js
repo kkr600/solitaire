@@ -23,18 +23,21 @@ class Game {
                 deckOpened.add(deckCovered.takeCards(1));
             } else if (deckCovered.number === 0 && deckOpened.number > 0) {
                 deckCovered.add(deckOpened.takeAll());
-            } else {
-                console.log("koniec kart")
-            }   
+            }
             active.deactivateStack();    
             event.stopPropagation();     
         })
         document.querySelector('#board').addEventListener('click', () =>{
             active.deactivateStack();
         })        
-        // window.addEventListener("orientationchange", function(event) {
-        //     location.reload();
-        //   });
+        document.querySelector('.info').addEventListener('click', ()=>{
+            const modal = document.querySelector('.modal');
+            modal.setAttribute('style',"display: block");
+        })
+        document.querySelector('.modal').addEventListener('click', ()=>{
+            const modal = document.querySelector('.modal');
+            modal.setAttribute('style',"display: none");
+        })
     }
     deactivateAll() {
         activeCard = deckOpened.deactivate();

@@ -19,7 +19,7 @@ export class DeckCovered {
               cardIndex = 13;
               break;
             case "A":
-              cardIndex = 14;
+              cardIndex = 1;
               break;
             default:
               cardIndex = weight;

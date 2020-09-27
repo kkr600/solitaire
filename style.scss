@@ -11,7 +11,16 @@
          -ms-user-select: none; /* Internet Explorer/Edge */
              user-select: none; /* Non-prefixed version, currently
                                    supported by Chrome, Edge, Opera and Firefox */
-    font-family: Lato;
+    font-family: Lato sans-serif;
+}
+
+:root {
+    --blueBright: #00d4ff;
+    --blue: #090979;
+    --blueDark: #020024;
+    --red: #f00;
+    --green: #008000;
+    --greenBright:#acff2f;
 }
 
 .black {
@@ -19,17 +28,16 @@
 }
 
 .red {
-    color: red;
+    color: var(--red);
 }
 
 .none {
-    background-color: green;
+    background-color: var(--green);
 }
 
-
-
 .activeCard {
-    border: 5px solid greenyellow;
+    border: 5px solid var(--greenBright);
+    transition: 100ms;
 }
 
 .cardFront {
@@ -39,9 +47,9 @@
 }
 
 .cardBackward {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-    border: 3px solid white;
+    background: var(--blueDark);
+    background: linear-gradient(90deg, var(--blueDark) 0%,var(--blue) 35%, var(--blueBright) 100%);
+    border: 2px solid white;
 }
 
 @media (orientation: portrait) {
@@ -65,9 +73,7 @@
         box-shadow: 0.2em 0.2em 0.5em #333;
         cursor: pointer;
         border-radius: 6px;
-        
     }
-
     #board {
         min-height: 100vh;
         padding: 10px 15px;
@@ -136,7 +142,7 @@
             padding: 20px 15px;
         }
         .subStacks {
-            margin-top: 120px;
+            margin-top: 80px;
             .subStack {
                 width: 120px;
             }
@@ -155,7 +161,7 @@
         border: 5px solid white;
     }
     .activeCard {
-        border: 10px solid greenyellow;
+        border-width: 10px;
     }
     #board {
         .up {
@@ -171,3 +177,29 @@
 }
 
 
+
+@media (min-width: 1367px) {
+    .card {
+        width: 100px;
+        height: 145px;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+    .activeCard {
+        border-width: 5px;
+    }
+    .cardBackward {
+        border: 3px solid white;
+    }
+    #board {
+        width: 70%;
+        margin: 50px auto 0 auto;
+        min-height: 650px;
+        .subStacks {
+            margin-top: 50px;
+            .subStack {
+                width: 100px;
+            }
+        }
+    }   
+}

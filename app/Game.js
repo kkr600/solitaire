@@ -40,6 +40,12 @@ class Game {
         activeCard = deckOpened.deactivate();
     }
     
+    checkWin(){
+        if (mainStack_1.number === 13 && mainStack_2 === 13 && mainStack_3 === 13 && mainStack_4) {
+            console.log('koniec gry');
+        }
+    }
+
 }
 
 const game = new Game();

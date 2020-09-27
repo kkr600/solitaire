@@ -40,7 +40,7 @@ export class Card {
 		let divy = document.querySelector(`#subStack_${stackNo}`).childNodes;
 		let opened = [];
 		let covered = [];
-		let spaceCover = 10;
+		let spaceCover = 7;
 		let spaceOpen = 25;
 		if (window.screen.width >= 568) {
 			spaceOpen = 18;
@@ -54,9 +54,12 @@ export class Card {
 		}
 		if (window.screen.width >= 1366) {
 			spaceCover = 20;
-			spaceOpen = 35;
+			spaceOpen = 45;
 		}		
-
+		if (window.screen.width >= 1440) {
+			spaceCover = 10;
+			spaceOpen = 30;
+		}	
 		divy.forEach( div => {
 			if (div.className.includes("cardFront")) {
 				opened.push(div)	

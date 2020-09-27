@@ -23,19 +23,16 @@ export class Card {
 		diamonds: '&diams;',
 		clubs: '&clubs;'
 	};
-
 	constructor(weight, type, color, cardIndex) {
 		this.weight = weight;
 		this.type = type;
 		this.color = color;
 		this.cardIndex = cardIndex;
 	}
-
 	render(card, site) {
 		const cardDIV = document.createElement('div');
 		cardDIV.className = `card ${site} ${card.color}`;
 		cardDIV.innerHTML = site === 'cardFront' ? `${card.weight} ${this.mapTextToSign[card.type]}` : '';
-		
 		return cardDIV;
 	};
 	countTop(stack, start) {
@@ -46,8 +43,7 @@ export class Card {
 		divy.forEach( div => {
 			if (div.className.includes("cardFront")) {
 				opened.push(div)	
-			}
-			if (div.className.includes("cardBackward")) {
+			} else if (div.className.includes("cardBackward")) {
 				covered.push(div)	
 			}
 		});

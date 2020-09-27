@@ -1,5 +1,4 @@
 export class Active {
-
     constructor(){
         this.activeCard = [];
         this.activeCards = [];
@@ -7,13 +6,11 @@ export class Active {
         this.cardsToMove = [];
         this.sourceStack;
     };
-
     setActiveCard(card) {
         this.activeCard = card;
         const div = document.querySelector(`#${this.activeStack.name}`);
         div.lastChild.classList.add("activeCard");
     };
-
     deactivateCard() {
         this.activeCard = [];
     };
@@ -36,7 +33,6 @@ export class Active {
         DIVs.forEach( div => {
             div.classList.remove("activeCard")
         })
-        
         this.activeStack = {};
         this.sourceStack = {};
         this.deactivateCard();
@@ -48,7 +44,6 @@ export class Active {
     clearCardsToMove(){
         this.cardsToMove = [];
     };
-    
 }
 
 const active = new Active();

@@ -29,10 +29,6 @@
   background-color: green;
 }
 
-.activeCard {
-  border: 5px solid greenyellow;
-}
-
 .card {
   width: 100px;
   height: 130px;
@@ -42,6 +38,10 @@
   cursor: pointer;
   margin-right: 20px;
   border-radius: 6px;
+}
+
+.activeCard {
+  border: 5px solid greenyellow;
 }
 
 .cardFront {
@@ -103,6 +103,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 100px;
   min-height: 130px;
 }

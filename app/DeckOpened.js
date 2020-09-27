@@ -2,15 +2,9 @@ import active from './Active.js';
 import card from './Card.js';
 
 export class DeckOpened {
-
     cards = [];
     name = 'deckOpened';
     number = 0;
-    active = false;
-    
-    constructor() {
-    };
-    
     add(cardToAdd) {
         this.cards.push(cardToAdd);
         this.number = this.cards.length;
@@ -23,20 +17,17 @@ export class DeckOpened {
         deckOpen.lastChild.addEventListener('click', () => {
             this.select();
         });
-
         active.deactivateStack();
     };
     select() {
-
         if (Object.keys(active.activeStack).length === 0 || active.activeStack.name !== "deckOpened") {
             active.deactivateStack();
             active.setActiveStack(this);
             active.setActiveCard(this.cardOnTop);
         } else if (active.activeStack.name === "deckOpened") {
             active.deactivateStack();
-        } else {
-            console.log('c')
-        }
+        } 
+        event.stopPropagation();
     }
     takeAll() {
         const deckOpen = document.querySelector("#deckOpened");
@@ -53,9 +44,7 @@ export class DeckOpened {
     pickOne() {
         let toTake = this.cards.splice(this.number-1,1)[0];
         this.number = this.cards.length;
-        
         const deckOpenedDIV = document.querySelector("#deckOpened");
-
         if (this.number > 0) {
             this.cardOnTop = this.cards[this.number-1][0];
             deckOpenedDIV.removeChild(deckOpenedDIV.lastChild);

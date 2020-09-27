@@ -25,10 +25,6 @@
     background-color: green;
 }
 
-.activeCard {
-    border: 5px solid greenyellow;
-}
-
 .card {
     width: 100px;
     height: 130px;
@@ -38,6 +34,11 @@
     margin-right: 20px;
     border-radius: 6px;
 }
+
+.activeCard {
+    border: 5px solid greenyellow;
+}
+
 .cardFront {
     background: #fff;
     padding: 5px 5px;
@@ -59,7 +60,6 @@
     margin: 50px auto 0 auto;
     display: flex;
     flex-direction: column;
-    
     .up {
         display: flex;
         flex-direction: row;
@@ -74,6 +74,7 @@
     .subStacks {
         width: 100%;
         display: flex;
+        justify-content: space-between;
         margin-top: 100px;
         min-height: 130px;
         .subStack {
@@ -86,10 +87,9 @@
             }
         }
     }
-    
-
-
 }
+
+
 
 
 

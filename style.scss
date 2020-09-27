@@ -21,7 +21,87 @@
     --red: #f00;
     --green: #008000;
     --greenBright:#acff2f;
+    --left: 80px;
+    $value: 80;
 }
+
+.rotate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--green);
+    text-align: center;
+    height: 100vh;
+    color: white;
+    div {
+        .logo {
+            font-style: italic;
+            font-size: 2rem;
+        }
+        .cards {
+            display: flex;
+            flex-direction: row;
+            margin: 20px 0;
+            .card {
+                width: 60px;
+                height: 75px;
+                font-weight: bold;
+                font-size: .7rem;
+                box-shadow: 0.2em 0.2em 0.5em #333;
+                border-radius: 6px;
+                text-align: left;
+                position: absolute;
+                animation-duration: 1s;
+                animation-fill-mode: forwards;
+                animation-timing-function: linear;
+            }
+            .card:nth-child(1) {
+                animation-name: opening_1;   
+                animation-delay: 100ms;
+            }
+            .card:nth-child(2) {
+                animation-name: opening_2;   
+                animation-delay: 400ms;
+            }
+            .card:nth-child(3) {
+                animation-name: opening_3;   
+                animation-delay: 500ms;
+            }
+            .card:nth-child(4) {
+                animation-name: opening_4;   
+                animation-delay: 600ms;
+                z-index: 4;
+            }
+            .card:nth-child(5) {
+                animation-name: opening_5;   
+                animation-delay: 700ms;
+                z-index: 5;
+            }
+        }
+    }
+}
+
+@keyframes opening_1 {
+    0% {left: -1500px;}
+    100% {left: 80px;}
+}
+@keyframes opening_2 {
+    0% {left: -1500px;}
+    100% {left: 90px;}
+}
+@keyframes opening_3 {
+    0% {left: -1500px;}
+    100% {left: 100px;}
+}
+@keyframes opening_4 {
+    0% {left: -1500px;}
+    100% {left: 110px;}
+}
+@keyframes opening_5 {
+    0% {left: -1500px;}
+    100% {left: 120px;}
+}
+
 
 .info {
     background: radial-gradient(var(--blueBright),var(--blue));
@@ -35,7 +115,7 @@
     text-align: center;
     cursor: pointer;
     line-height: 1rem;
-    span {
+    p {
         color: white;
         font-weight: 700;
     }
@@ -110,13 +190,165 @@
     #board {
         display: none;
     }
-    .information {
-        display: block;
+}
+
+@media (min-width: 280px) and (orientation: portrait) {
+    @keyframes opening_1 {
+        0% {left: -1500px;}
+        100% {left: 80px;}
+    }
+    @keyframes opening_2 {
+        0% {left: -1500px;}
+        100% {left: 90px;}
+    }
+    @keyframes opening_3 {
+        0% {left: -1500px;}
+        100% {left: 100px;}
+    }
+    @keyframes opening_4 {
+        0% {left: -1500px;}
+        100% {left: 110px;}
+    }
+    @keyframes opening_5 {
+        0% {left: -1500px;}
+        100% {left: 120px;}
+    }
+}
+
+@media (min-width: 320px) and (orientation: portrait) {
+    @keyframes opening_1 {
+        0% {left: -1500px;}
+        100% {left: 100px;}
+    }
+    @keyframes opening_2 {
+        0% {left: -1500px;}
+        100% {left: 110px;}
+    }
+    @keyframes opening_3 {
+        0% {left: -1500px;}
+        100% {left: 120px;}
+    }
+    @keyframes opening_4 {
+        0% {left: -1500px;}
+        100% {left: 130px;}
+    }
+    @keyframes opening_5 {
+        0% {left: -1500px;}
+        100% {left: 140px;}
+    }
+}
+@media (min-width: 375px) and (orientation: portrait) {
+    @keyframes opening_1 {
+        0% {left: -1500px;}
+        100% {left: 120px;}
+    }
+    @keyframes opening_2 {
+        0% {left: -1500px;}
+        100% {left: 130px;}
+    }
+    @keyframes opening_3 {
+        0% {left: -1500px;}
+        100% {left: 140px;}
+    }
+    @keyframes opening_4 {
+        0% {left: -1500px;}
+        100% {left: 150px;}
+    }
+    @keyframes opening_5 {
+        0% {left: -1500px;}
+        100% {left: 160px;}
+    }
+}
+
+@media (min-width: 768px) and (orientation: portrait) {
+    .rotate {
+        div {
+            .logo {
+                font-size: 3.5rem;
+            }
+            .description {
+                font-size: 2rem;
+            }
+            .cards {
+                .card {
+                    width: 100px;
+                    height: 140px;
+                    font-size: 1.1rem;
+                    border-radius: 8px;
+                }
+                .card:nth-child(1) {
+                    animation-name: opening_1;   
+                    animation-delay: 100ms;
+                }
+                .card:nth-child(2) {
+                    animation-name: opening_2;   
+                    animation-delay: 400ms;
+                }
+                .card:nth-child(3) {
+                    animation-name: opening_3;   
+                    animation-delay: 500ms;
+                }
+                .card:nth-child(4) {
+                    animation-name: opening_4;   
+                    animation-delay: 600ms;
+                    z-index: 4;
+                }
+                .card:nth-child(5) {
+                    animation-name: opening_5;   
+                    animation-delay: 700ms;
+                    z-index: 5;
+                }
+            }
+        }
+    }
+    
+    @keyframes opening_1 {
+        0% {left: -1500px;}
+        100% {left: 300px;}
+    }
+    @keyframes opening_2 {
+        0% {left: -1500px;}
+        100% {left: 320px;}
+    }
+    @keyframes opening_3 {
+        0% {left: -1500px;}
+        100% {left: 340px;}
+    }
+    @keyframes opening_4 {
+        0% {left: -1500px;}
+        100% {left: 360px;}
+    }
+    @keyframes opening_5 {
+        0% {left: -1500px;}
+        100% {left: 380px;}
+    }
+}
+
+@media (min-width: 1024px) and (orientation: portrait) {
+    @keyframes opening_1 {
+        0% {left: -1500px;}
+        100% {left: 400px;}
+    }
+    @keyframes opening_2 {
+        0% {left: -1500px;}
+        100% {left: 420px;}
+    }
+    @keyframes opening_3 {
+        0% {left: -1500px;}
+        100% {left: 440px;}
+    }
+    @keyframes opening_4 {
+        0% {left: -1500px;}
+        100% {left: 460px;}
+    }
+    @keyframes opening_5 {
+        0% {left: -1500px;}
+        100% {left: 480px;}
     }
 }
 
 @media (min-width: 568px) and (orientation: landscape) {
-    .information {
+    .rotate {
         display: none;
     }
     .card {
@@ -131,7 +363,7 @@
     #board {
         min-height: 100vh;
         padding: 10px 15px;
-        background-color: green;
+        background-color: var(--green);
         border-radius: 3px;
         display: flex;
         flex-direction: column;

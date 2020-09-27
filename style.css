@@ -25,6 +25,185 @@
   --red: #f00;
   --green: #008000;
   --greenBright:#acff2f;
+  --left: 80px;
+}
+
+.rotate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: var(--green);
+  text-align: center;
+  height: 100vh;
+  color: white;
+}
+
+.rotate div .logo {
+  font-style: italic;
+  font-size: 2rem;
+}
+
+.rotate div .cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 20px 0;
+}
+
+.rotate div .cards .card {
+  width: 60px;
+  height: 75px;
+  font-weight: bold;
+  font-size: .7rem;
+  -webkit-box-shadow: 0.2em 0.2em 0.5em #333;
+          box-shadow: 0.2em 0.2em 0.5em #333;
+  border-radius: 6px;
+  text-align: left;
+  position: absolute;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+.rotate div .cards .card:nth-child(1) {
+  -webkit-animation-name: opening_1;
+          animation-name: opening_1;
+  -webkit-animation-delay: 100ms;
+          animation-delay: 100ms;
+}
+
+.rotate div .cards .card:nth-child(2) {
+  -webkit-animation-name: opening_2;
+          animation-name: opening_2;
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+
+.rotate div .cards .card:nth-child(3) {
+  -webkit-animation-name: opening_3;
+          animation-name: opening_3;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+.rotate div .cards .card:nth-child(4) {
+  -webkit-animation-name: opening_4;
+          animation-name: opening_4;
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+  z-index: 4;
+}
+
+.rotate div .cards .card:nth-child(5) {
+  -webkit-animation-name: opening_5;
+          animation-name: opening_5;
+  -webkit-animation-delay: 700ms;
+          animation-delay: 700ms;
+  z-index: 5;
+}
+
+@-webkit-keyframes opening_1 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 80px;
+  }
+}
+
+@keyframes opening_1 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 80px;
+  }
+}
+
+@-webkit-keyframes opening_2 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 90px;
+  }
+}
+
+@keyframes opening_2 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 90px;
+  }
+}
+
+@-webkit-keyframes opening_3 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 100px;
+  }
+}
+
+@keyframes opening_3 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 100px;
+  }
+}
+
+@-webkit-keyframes opening_4 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 110px;
+  }
+}
+
+@keyframes opening_4 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 110px;
+  }
+}
+
+@-webkit-keyframes opening_5 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 120px;
+  }
+}
+
+@keyframes opening_5 {
+  0% {
+    left: -1500px;
+  }
+  100% {
+    left: 120px;
+  }
 }
 
 .info {
@@ -42,7 +221,7 @@
   z-index: 2;
 }
 
-.info span {
+.info p {
   color: white;
   font-weight: 700;
 }
@@ -122,13 +301,469 @@
   #board {
     display: none;
   }
-  .information {
-    display: block;
+}
+
+@media (min-width: 280px) and (orientation: portrait) {
+  @-webkit-keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 80px;
+    }
+  }
+  @keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 80px;
+    }
+  }
+  @-webkit-keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 90px;
+    }
+  }
+  @keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 90px;
+    }
+  }
+  @-webkit-keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 100px;
+    }
+  }
+  @keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 100px;
+    }
+  }
+  @-webkit-keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 110px;
+    }
+  }
+  @keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 110px;
+    }
+  }
+  @-webkit-keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+  @keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+}
+
+@media (min-width: 320px) and (orientation: portrait) {
+  @-webkit-keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 100px;
+    }
+  }
+  @keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 100px;
+    }
+  }
+  @-webkit-keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 110px;
+    }
+  }
+  @keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 110px;
+    }
+  }
+  @-webkit-keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+  @keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+  @-webkit-keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 130px;
+    }
+  }
+  @keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 130px;
+    }
+  }
+  @-webkit-keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 140px;
+    }
+  }
+  @keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 140px;
+    }
+  }
+}
+
+@media (min-width: 375px) and (orientation: portrait) {
+  @-webkit-keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+  @keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+  @-webkit-keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 130px;
+    }
+  }
+  @keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 130px;
+    }
+  }
+  @-webkit-keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 140px;
+    }
+  }
+  @keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 140px;
+    }
+  }
+  @-webkit-keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 150px;
+    }
+  }
+  @keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 150px;
+    }
+  }
+  @-webkit-keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 160px;
+    }
+  }
+  @keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 160px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (orientation: portrait) {
+  .rotate div .logo {
+    font-size: 3.5rem;
+  }
+  .rotate div .description {
+    font-size: 2rem;
+  }
+  .rotate div .cards .card {
+    width: 100px;
+    height: 140px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+  .rotate div .cards .card:nth-child(1) {
+    -webkit-animation-name: opening_1;
+            animation-name: opening_1;
+    -webkit-animation-delay: 100ms;
+            animation-delay: 100ms;
+  }
+  .rotate div .cards .card:nth-child(2) {
+    -webkit-animation-name: opening_2;
+            animation-name: opening_2;
+    -webkit-animation-delay: 400ms;
+            animation-delay: 400ms;
+  }
+  .rotate div .cards .card:nth-child(3) {
+    -webkit-animation-name: opening_3;
+            animation-name: opening_3;
+    -webkit-animation-delay: 500ms;
+            animation-delay: 500ms;
+  }
+  .rotate div .cards .card:nth-child(4) {
+    -webkit-animation-name: opening_4;
+            animation-name: opening_4;
+    -webkit-animation-delay: 600ms;
+            animation-delay: 600ms;
+    z-index: 4;
+  }
+  .rotate div .cards .card:nth-child(5) {
+    -webkit-animation-name: opening_5;
+            animation-name: opening_5;
+    -webkit-animation-delay: 700ms;
+            animation-delay: 700ms;
+    z-index: 5;
+  }
+  @-webkit-keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 300px;
+    }
+  }
+  @keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 300px;
+    }
+  }
+  @-webkit-keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 320px;
+    }
+  }
+  @keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 320px;
+    }
+  }
+  @-webkit-keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 340px;
+    }
+  }
+  @keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 340px;
+    }
+  }
+  @-webkit-keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 360px;
+    }
+  }
+  @keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 360px;
+    }
+  }
+  @-webkit-keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 380px;
+    }
+  }
+  @keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 380px;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (orientation: portrait) {
+  @-webkit-keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 400px;
+    }
+  }
+  @keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 400px;
+    }
+  }
+  @-webkit-keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 420px;
+    }
+  }
+  @keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 420px;
+    }
+  }
+  @-webkit-keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 440px;
+    }
+  }
+  @keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 440px;
+    }
+  }
+  @-webkit-keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 460px;
+    }
+  }
+  @keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 460px;
+    }
+  }
+  @-webkit-keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 480px;
+    }
+  }
+  @keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 480px;
+    }
   }
 }
 
 @media (min-width: 568px) and (orientation: landscape) {
-  .information {
+  .rotate {
     display: none;
   }
   .card {
@@ -144,7 +779,7 @@
   #board {
     min-height: 100vh;
     padding: 10px 15px;
-    background-color: green;
+    background-color: var(--green);
     border-radius: 3px;
     display: -webkit-box;
     display: -ms-flexbox;

@@ -199,6 +199,27 @@
   #board .subStacks .subStack .subStackCard {
     position: absolute;
   }
+  .modal {
+    padding-top: 50px;
+  }
+  .modal .modalContent {
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    padding: 0;
+    outline: 0;
+    width: 400px;
+  }
+  .modal .modalContent section.header {
+    font-size: .8rem;
+  }
+  .modal .modalContent section.content {
+    padding: 10px 20px;
+    font-size: .8rem;
+  }
+  .modal .modalContent section p:not(:first-child) {
+    margin-top: 10px;
+  }
 }
 
 @media (min-width: 667px) and (orientation: landscape) {
@@ -238,6 +259,23 @@
   .info span {
     font-size: 1.2rem;
   }
+  .modal {
+    padding-top: 150px;
+  }
+  .modal .modalContent {
+    width: 600px;
+  }
+  .modal .modalContent section.header {
+    font-size: 1.2rem;
+    padding: 10px 0 10px 40px;
+  }
+  .modal .modalContent section.content {
+    padding: 20px 30px;
+    font-size: 1rem;
+  }
+  .modal .modalContent section p:not(:first-child) {
+    margin-top: 20px;
+  }
 }
 
 @media (min-width: 1366px) and (orientation: landscape) {
@@ -272,6 +310,22 @@
   }
   .info span {
     font-size: 1.7rem;
+  }
+  .modal {
+    padding-top: 250px;
+  }
+  .modal .modalContent {
+    width: 800px;
+  }
+  .modal .modalContent section.header {
+    font-size: 1.4rem;
+  }
+  .modal .modalContent section.content {
+    padding: 30px 40px;
+    font-size: 1.3rem;
+  }
+  .modal .modalContent section p:not(:first-child) {
+    margin-top: 30px;
   }
 }
 

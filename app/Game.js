@@ -31,21 +31,24 @@ class Game {
             active.deactivateStack();
         })        
         document.querySelector('.info').addEventListener('click', ()=>{
-            const modal = document.querySelector('.modal');
+            const modal = document.querySelector('.modalInfo');
             modal.setAttribute('style',"display: block");
         })
-        document.querySelector('.modal').addEventListener('click', ()=>{
-            const modal = document.querySelector('.modal');
+        document.querySelector('.modalInfo').addEventListener('click', ()=>{
+            const modal = document.querySelector('.modalInfo');
             modal.setAttribute('style',"display: none");
+        })
+        document.querySelector('.modalEndOfGame').addEventListener('click', ()=>{
+            location.reload();
         })
     }
     deactivateAll() {
         activeCard = deckOpened.deactivate();
     }
-    
     checkWin(){
-        if (mainStack_1.number === 13 && mainStack_2 === 13 && mainStack_3 === 13 && mainStack_4) {
-            console.log('koniec gry');
+        if (mainStack_1.number === 13 && mainStack_2.number === 13 && mainStack_3.number === 13 && mainStack_4.number === 13) {
+            const modal = document.querySelector('.modalEndOfGame');
+            modal.setAttribute('style',"display: block");
         }
     }
 

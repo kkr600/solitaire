@@ -1,6 +1,5 @@
 import active from "./Active.js";
 import deckOpened from './DeckOpened.js';
-import mainStack from './DeckCovered.js';
 import card from './Card.js';
 
 export class SubStack {
@@ -26,24 +25,14 @@ export class SubStack {
             newCard.classList.add("subStackCard");
             stackDIV.appendChild(newCard);
             newCard.setAttribute('style', `top: ${card.countTop(this, 'start')}px`);
-            newCard.addEventListener('dblclick',()=>{
-                console.log('dblclick');
-                this.expressMain();
-            })
             newCard.addEventListener('click', (event) =>  this.chooseStack(this.stackNo, event));
         })
         this.number = cards.length;
     };
-    expressMain(){
-        for (let i=1; i<5; i++) {
-            // if (active.activeStack)
-        }
-            console.log(active.activeStack)
-    }
     chooseStack(stack, event) {
         const subStack = document.querySelector(`#subStack_${stack}`);
         const choosedCardId = Array.prototype.slice.call( subStack.children ).indexOf(event.target);
-        if (Object.keys(active.activeStack).length === 0 && event.target.className.includes("cardFront")) { //pierwsze wybranie
+        if (Object.keys(active.activeStack).length === 0 && event.target.className.includes("cardFront")) {
             active.clearCardsToMove();
             for (let i = choosedCardId; i < this.number; i++) {
                 active.addCardsToMove(this.cards[i]);
@@ -54,10 +43,10 @@ export class SubStack {
             if (choosedCardId+1 == this.number) {
                 active.setActiveCard(this.cards[this.number-1]);
             }
-        } else if (Object.keys(active.activeStack).length && active.activeStack.name === this.name) { //ponowne wybranie
+        } else if (Object.keys(active.activeStack).length && active.activeStack.name === this.name) { 
             active.clearCardsToMove();
             active.deactivateStack();
-        } else if (Object.keys(active.activeStack).length && active.activeStack.name.includes("subStack_") && this.name !== active.activeStack.name) { //próba przeniesienia
+        } else if (Object.keys(active.activeStack).length && active.activeStack.name.includes("subStack_") && this.name !== active.activeStack.name) {
             const firstCardMovedStack = active.cardsToMove[0];
             const firstCardTargetStack = this.cards[this.number-1];
             if (firstCardMovedStack.color !== firstCardTargetStack.color && (firstCardTargetStack.cardIndex - firstCardMovedStack.cardIndex) === 1) {

@@ -297,13 +297,13 @@
   border: 2px solid white;
 }
 
-@media (orientation: portrait) {
+@media only screen and (orientation: portrait) {
   #board {
     display: none;
   }
 }
 
-@media (min-width: 280px) and (orientation: portrait) {
+@media only screen and (min-width: 280px) and (orientation: portrait) {
   @-webkit-keyframes opening_1 {
     0% {
       left: -1500px;
@@ -386,7 +386,7 @@
   }
 }
 
-@media (min-width: 320px) and (orientation: portrait) {
+@media only screen and (min-width: 320px) and (orientation: portrait) {
   @-webkit-keyframes opening_1 {
     0% {
       left: -1500px;
@@ -469,7 +469,7 @@
   }
 }
 
-@media (min-width: 375px) and (orientation: portrait) {
+@media only screen and (min-width: 375px) and (orientation: portrait) {
   @-webkit-keyframes opening_1 {
     0% {
       left: -1500px;
@@ -552,7 +552,7 @@
   }
 }
 
-@media (min-width: 768px) and (orientation: portrait) {
+@media only screen and (min-width: 768px) and (orientation: portrait) {
   .rotate div .logo {
     font-size: 3.5rem;
   }
@@ -679,7 +679,7 @@
   }
 }
 
-@media (min-width: 1024px) and (orientation: portrait) {
+@media only screen and (min-width: 1024px) and (orientation: portrait) {
   @-webkit-keyframes opening_1 {
     0% {
       left: -1500px;
@@ -762,7 +762,7 @@
   }
 }
 
-@media (min-width: 568px) and (orientation: landscape) {
+@media only screen and (min-width: 568px) and (orientation: landscape) {
   .rotate {
     display: none;
   }
@@ -858,7 +858,7 @@
   }
 }
 
-@media (min-width: 667px) and (orientation: landscape) {
+@media only screen and (min-width: 667px) and (orientation: landscape) {
   .card {
     width: 80px;
     height: 105px;
@@ -869,7 +869,7 @@
   }
 }
 
-@media (min-width: 1024px) and (orientation: landscape) {
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
   .card {
     width: 120px;
     height: 145px;
@@ -914,7 +914,7 @@
   }
 }
 
-@media (min-width: 1366px) and (orientation: landscape) {
+@media only screen and (min-width: 1366px) and (orientation: landscape) {
   .card {
     width: 160px;
     height: 205px;
@@ -965,29 +965,32 @@
   }
 }
 
-@media (min-width: 1367px) {
-  .card {
-    width: 100px;
-    height: 145px;
-    font-size: 1rem;
-    border-radius: 8px;
-  }
-  .activeCard {
-    border-width: 5px;
-  }
-  .cardBackward {
-    border: 3px solid white;
-  }
-  #board {
-    width: 70%;
-    margin: 50px auto 0 auto;
-    min-height: 650px;
-  }
-  #board .subStacks {
-    margin-top: 50px;
-  }
-  #board .subStacks .subStack {
-    width: 100px;
-  }
+.card {
+  width: 100px;
+  height: 145px;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.activeCard {
+  border-width: 5px;
+}
+
+.cardBackward {
+  border: 3px solid white;
+}
+
+#board {
+  width: 70%;
+  margin: 50px auto 0 auto;
+  min-height: 650px;
+}
+
+#board .subStacks {
+  margin-top: 50px;
+}
+
+#board .subStacks .subStack {
+  width: 100px;
 }
 /*# sourceMappingURL=style.css.map */

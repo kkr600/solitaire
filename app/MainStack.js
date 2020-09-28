@@ -1,6 +1,6 @@
 import active from "./Active.js";
 import deckOpened from "./DeckOpened.js";
-import deckCovered from "./DeckCovered.js";
+import game from "./Game.js";
 import card from "./Card.js";
 
 export class MainStack {
@@ -59,6 +59,7 @@ export class MainStack {
         if (mainStack.childNodes.length > 0)
             mainStack.removeChild(mainStack.lastChild)
         mainStack.appendChild(card.render(newCard, "cardFront"));
+        game.checkWin();
     };
     pickOne() {
         const div = document.querySelector(`#${active.activeStack.name}`);

@@ -59,6 +59,7 @@
       -ms-flex-direction: row;
           flex-direction: row;
   margin: 20px 0;
+  height: 75px;
 }
 
 .rotate div .cards .card {
@@ -71,6 +72,7 @@
   border-radius: 6px;
   text-align: left;
   position: absolute;
+  left: -1500px;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
   -webkit-animation-fill-mode: forwards;
@@ -89,31 +91,29 @@
 .rotate div .cards .card:nth-child(2) {
   -webkit-animation-name: opening_2;
           animation-name: opening_2;
-  -webkit-animation-delay: 400ms;
-          animation-delay: 400ms;
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
 }
 
 .rotate div .cards .card:nth-child(3) {
   -webkit-animation-name: opening_3;
           animation-name: opening_3;
-  -webkit-animation-delay: 500ms;
-          animation-delay: 500ms;
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
 }
 
 .rotate div .cards .card:nth-child(4) {
   -webkit-animation-name: opening_4;
           animation-name: opening_4;
-  -webkit-animation-delay: 600ms;
-          animation-delay: 600ms;
-  z-index: 4;
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
 }
 
 .rotate div .cards .card:nth-child(5) {
   -webkit-animation-name: opening_5;
           animation-name: opening_5;
-  -webkit-animation-delay: 700ms;
-          animation-delay: 700ms;
-  z-index: 5;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
 }
 
 @-webkit-keyframes opening_1 {
@@ -203,103 +203,6 @@
   }
   100% {
     left: 120px;
-  }
-}
-
-.info {
-  background: radial-gradient(var(--blueBright), var(--blue));
-  position: absolute;
-  border-radius: 50%;
-  bottom: 15px;
-  right: 15px;
-  border: 2px solid white;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  cursor: pointer;
-  line-height: 1rem;
-  z-index: 2;
-}
-
-.info p {
-  color: white;
-  font-weight: 700;
-}
-
-.modal {
-  z-index: 3;
-  display: none;
-  padding-top: 100px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal .modalContent {
-  margin: auto;
-  background-color: #fff;
-  position: relative;
-  padding: 0;
-  outline: 0;
-  width: 600px;
-  border-radius: 5px;
-}
-
-.modal .modalContent section.header {
-  background: -webkit-gradient(linear, left top, right top, from(var(--blueDark)), color-stop(35%, var(--blue)), to(var(--blueBright)));
-  background: linear-gradient(90deg, var(--blueDark) 0%, var(--blue) 35%, var(--blueBright) 100%);
-  color: white;
-  padding: 5px 0 5px 40px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.modal .modalContent section.content {
-  padding: 20px 30px;
-}
-
-.modal .modalContent section p:not(:first-child) {
-  margin-top: 30px;
-}
-
-.black {
-  color: black;
-}
-
-.red {
-  color: var(--red);
-}
-
-.none {
-  background-color: var(--green);
-}
-
-.activeCard {
-  border: 5px solid var(--greenBright);
-  -webkit-transition: 100ms;
-  transition: 100ms;
-}
-
-.cardFront {
-  background: #fff;
-  padding: 5px 5px;
-  cursor: pointer;
-}
-
-.cardBackward {
-  background: var(--blueDark);
-  background: -webkit-gradient(linear, left top, right top, from(var(--blueDark)), color-stop(35%, var(--blue)), to(var(--blueBright)));
-  background: linear-gradient(90deg, var(--blueDark) 0%, var(--blue) 35%, var(--blueBright) 100%);
-  border: 2px solid white;
-}
-
-@media only screen and (orientation: portrait) {
-  #board {
-    display: none;
   }
 }
 
@@ -469,7 +372,7 @@
   }
 }
 
-@media only screen and (min-width: 375px) and (orientation: portrait) {
+@media only screen and (min-width: 360px) and (orientation: portrait) {
   @-webkit-keyframes opening_1 {
     0% {
       left: -1500px;
@@ -552,12 +455,279 @@
   }
 }
 
+@media only screen and (min-width: 411px) and (orientation: portrait) {
+  @-webkit-keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 140px;
+    }
+  }
+  @keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 140px;
+    }
+  }
+  @-webkit-keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 150px;
+    }
+  }
+  @keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 150px;
+    }
+  }
+  @-webkit-keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 160px;
+    }
+  }
+  @keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 160px;
+    }
+  }
+  @-webkit-keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 170px;
+    }
+  }
+  @keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 170px;
+    }
+  }
+  @-webkit-keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 180px;
+    }
+  }
+  @keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 180px;
+    }
+  }
+}
+
+@media only screen and (min-width: 540px) and (orientation: portrait) {
+  @-webkit-keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 210px;
+    }
+  }
+  @keyframes opening_1 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 210px;
+    }
+  }
+  @-webkit-keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 220px;
+    }
+  }
+  @keyframes opening_2 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 220px;
+    }
+  }
+  @-webkit-keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 230px;
+    }
+  }
+  @keyframes opening_3 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 230px;
+    }
+  }
+  @-webkit-keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 240px;
+    }
+  }
+  @keyframes opening_4 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 240px;
+    }
+  }
+  @-webkit-keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 250px;
+    }
+  }
+  @keyframes opening_5 {
+    0% {
+      left: -1500px;
+    }
+    100% {
+      left: 250px;
+    }
+  }
+}
+
+.info {
+  background: radial-gradient(var(--blueBright), var(--blue));
+  position: absolute;
+  border-radius: 50%;
+  color: white;
+  bottom: 15px;
+  right: 15px;
+  border: 2px solid white;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 1rem;
+  z-index: 2;
+}
+
+.info p {
+  color: white;
+  font-weight: 700;
+}
+
+.modal {
+  z-index: 3;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal .modalContent {
+  top: 15%;
+  margin: auto;
+  background-color: #fff;
+  position: relative;
+  padding: 0;
+  outline: 0;
+  width: 600px;
+  border-radius: 5px;
+}
+
+.modal .modalContent section.header {
+  background: -webkit-gradient(linear, left top, right top, from(var(--blueDark)), color-stop(35%, var(--blue)), to(var(--blueBright)));
+  background: linear-gradient(90deg, var(--blueDark) 0%, var(--blue) 35%, var(--blueBright) 100%);
+  color: white;
+  padding: 5px 0 5px 40px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal .modalContent section.content {
+  padding: 20px 30px;
+}
+
+.modal .modalContent section p:not(:first-child) {
+  margin-top: 30px;
+}
+
+.black {
+  color: black;
+}
+
+.red {
+  color: var(--red);
+}
+
+.none {
+  background-color: var(--green);
+}
+
+.activeCard {
+  border: 5px solid var(--greenBright);
+  -webkit-transition: 100ms;
+  transition: 100ms;
+}
+
+.cardFront {
+  background: #fff;
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
+.cardBackward {
+  background: var(--blueDark);
+  background: -webkit-gradient(linear, left top, right top, from(var(--blueDark)), color-stop(35%, var(--blue)), to(var(--blueBright)));
+  background: linear-gradient(90deg, var(--blueDark) 0%, var(--blue) 35%, var(--blueBright) 100%);
+  border: 2px solid white;
+}
+
+@media only screen and (orientation: portrait) {
+  #board {
+    display: none;
+  }
+}
+
 @media only screen and (min-width: 768px) and (orientation: portrait) {
   .rotate div .logo {
     font-size: 3.5rem;
   }
   .rotate div .description {
     font-size: 2rem;
+  }
+  .rotate div .cards {
+    height: 140px;
   }
   .rotate div .cards .card {
     width: 100px;
@@ -895,9 +1065,6 @@
   .info span {
     font-size: 1.2rem;
   }
-  .modal {
-    padding-top: 150px;
-  }
   .modal .modalContent {
     width: 600px;
   }
@@ -947,9 +1114,6 @@
   .info span {
     font-size: 1.7rem;
   }
-  .modal {
-    padding-top: 250px;
-  }
   .modal .modalContent {
     width: 800px;
   }
@@ -965,32 +1129,29 @@
   }
 }
 
-.card {
-  width: 100px;
-  height: 145px;
-  font-size: 1rem;
-  border-radius: 8px;
-}
-
-.activeCard {
-  border-width: 5px;
-}
-
-.cardBackward {
-  border: 3px solid white;
-}
-
-#board {
-  width: 70%;
-  margin: 50px auto 0 auto;
-  min-height: 650px;
-}
-
-#board .subStacks {
-  margin-top: 50px;
-}
-
-#board .subStacks .subStack {
-  width: 100px;
+@media (min-width: 1280px) {
+  .card {
+    width: 100px;
+    height: 145px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+  .activeCard {
+    border-width: 5px;
+  }
+  .cardBackward {
+    border: 3px solid white;
+  }
+  #board {
+    width: 70%;
+    margin: 50px auto 0 auto;
+    min-height: 650px;
+  }
+  #board .subStacks {
+    margin-top: 50px;
+  }
+  #board .subStacks .subStack {
+    width: 100px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

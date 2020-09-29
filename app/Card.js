@@ -52,10 +52,14 @@ export class Card {
 			spaceCover = 15;
 			spaceOpen = 30;
 		}
-		if (window.screen.width >= 1366) {
+		if (window.screen.width >= 1366 && this.isMobile()) {
 			spaceCover = 20;
 			spaceOpen = 45;
 		}		
+		if (window.screen.width >= 1366 && !this.isMobile()) {
+			spaceCover = 10;
+			spaceOpen = 25;			
+		}
 		if (window.screen.width >= 1440) {
 			spaceCover = 10;
 			spaceOpen = 25;
@@ -68,7 +72,15 @@ export class Card {
 			}
 		});
 		return start === 'start' ? divy.length * spaceCover : (covered.length+1) * spaceCover + opened.length * spaceOpen;
-	}
+	};
+	isMobile() {
+		try {
+		   if(/Android|webOS|iPhone|iPad|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(navigator.userAgent)) {
+			return true;
+		   };
+		   return false;
+		} catch(e){ console.log("Error in isMobile"); return false; }
+	   }
 }
 
 const card = new Card();

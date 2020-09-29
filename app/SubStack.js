@@ -26,8 +26,24 @@ export class SubStack {
             stackDIV.appendChild(newCard);
             newCard.setAttribute('style', `top: ${card.countTop(this, 'start')}px`);
             newCard.addEventListener('click', (event) =>  this.chooseStack(this.stackNo, event));
+            newCard.addEventListener('dblclick', (event) => {this.dbl(this.stackNo, event)});
+            const manager = new Hammer.Manager(newCard);
+            const DoubleTap = new Hammer.Tap({
+                event: 'doubletap',
+                taps: 2
+              });
+            manager.add(DoubleTap);
+            manager.on('doubletap', function(e) {
+                alert('dbltap');
+            });
+              
+
         })
         this.number = cards.length;
+    };
+    dbl(stack, event) {
+
+        console.log('dbl');
     };
     chooseStack(stack, event) {
         const subStack = document.querySelector(`#subStack_${stack}`);

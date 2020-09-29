@@ -34,7 +34,7 @@ export class SubStack {
               });
             manager.add(DoubleTap);
             manager.on('doubletap', function(e) {
-                alert('dbltap');
+                // alert('dbltap');
             });
               
 

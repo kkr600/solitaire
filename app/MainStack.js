@@ -6,6 +6,7 @@ import card from "./Card.js";
 export class MainStack {
     cards = [];
     cardIndex = 0;
+    number = 0;
     constructor(stackNo) {
         this.stackNo = stackNo;
         this.name = `mainStack_${stackNo}`;
@@ -25,7 +26,7 @@ export class MainStack {
                     this.addOne(active.sourceStack.pickOneToMain()); 
                 }
                 this.cardIndex = this.cardOnTop.cardIndex;
-                active.deactivateStack();       
+                active.deactivateStack();
         } else if (Object.keys(active.activeCard).length 
             && this.cardOnTop !== undefined
             && this.cardOnTop.cardIndex > 0 && this.cardOnTop.cardIndex < 14 
@@ -59,11 +60,11 @@ export class MainStack {
         if (mainStack.childNodes.length > 0)
             mainStack.removeChild(mainStack.lastChild)
         mainStack.appendChild(card.render(newCard, "cardFront"));
+        active.deactivateStack();
         game.checkWin();
     };
     pickOne() {
         const div = document.querySelector(`#${active.activeStack.name}`);
-        console.log(active.activeStack.name);
         let cardTemp = active.activeStack.cardOnTop;
         active.activeStack.cards.pop();
         let newCard = active.activeStack.cards[active.activeStack.cards.length-1]

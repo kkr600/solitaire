@@ -1,6 +1,7 @@
 import active from "./Active.js";
 import deckOpened from './DeckOpened.js';
 import card from './Card.js';
+import { MainStack, mainStack_1, mainStack_2, mainStack_3, mainStack_4 } from './MainStack.js';
 
 export class SubStack {
     cards = [];
@@ -26,24 +27,38 @@ export class SubStack {
             stackDIV.appendChild(newCard);
             newCard.setAttribute('style', `top: ${card.countTop(this, 'start')}px`);
             newCard.addEventListener('click', (event) =>  this.chooseStack(this.stackNo, event));
-            newCard.addEventListener('dblclick', (event) => {this.dbl(this.stackNo, event)});
+            const tempThis = this;
             const manager = new Hammer.Manager(newCard);
             const DoubleTap = new Hammer.Tap({
                 event: 'doubletap',
                 taps: 2
               });
             manager.add(DoubleTap);
-            manager.on('doubletap', function(e) {
-                // alert('dbltap');
+            manager.on('doubletap', () => {
+                tempThis.dbl(tempThis)
             });
-              
-
         })
         this.number = cards.length;
     };
-    dbl(stack, event) {
-
-        console.log('dbl');
+    dbl(stack) {
+        active.setActiveStack(stack);
+        active.setSourceStack(stack);
+        const mainStacks = [mainStack_1, mainStack_2, mainStack_3, mainStack_4];
+        let end = false;
+        mainStacks.forEach( mainStack => {
+            if (mainStack.number > 0 
+                && mainStack.cardOnTop.type === stack.cardOnTop.type
+                && (stack.cardOnTop.cardIndex - mainStack.cardOnTop.cardIndex) === 1
+                && !end) {
+                    mainStack.addOne(stack.pickOneToMain());
+                    end = true;
+            } else if (mainStack.number == 0
+                && stack.cardOnTop.cardIndex === 1
+                && !end) {
+                    mainStack.addOne(stack.pickOneToMain());
+                    end = true;
+                }
+        });
     };
     chooseStack(stack, event) {
         const subStack = document.querySelector(`#subStack_${stack}`);
@@ -116,6 +131,16 @@ export class SubStack {
         newCard.setAttribute('style', `top: ${card.countTop(this)}px`);
         stackDIV.appendChild(newCard);
         newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
+        const tempThis = this;
+        const manager = new Hammer.Manager(newCard);
+        const DoubleTap = new Hammer.Tap({
+            event: 'doubletap',
+            taps: 2
+            });
+        manager.add(DoubleTap);
+        manager.on('doubletap', () => {
+            tempThis.dbl(tempThis)
+        });
     };
     pickOneToMain() {
         const cardTemp = this.cardOnTop;
@@ -156,6 +181,16 @@ export class SubStack {
             newCard.setAttribute('style', `top: ${card.countTop(this)}px`);
             stackDIV.appendChild(newCard);
             newCard.addEventListener('click', (event) => this.chooseStack(this.stackNo, event));
+            const tempThis = this;
+            const manager = new Hammer.Manager(newCard);
+            const DoubleTap = new Hammer.Tap({
+                event: 'doubletap',
+                taps: 2
+              });
+            manager.add(DoubleTap);
+            manager.on('doubletap', () => {
+                tempThis.dbl(tempThis)
+            });
             this.cardOnTop = lastCard;
         }
     };

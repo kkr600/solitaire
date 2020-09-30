@@ -233,87 +233,78 @@
     z-index: 2;
 }
 
-.modalInfo {
-    z-index:3;
-    // display:none;
-    position:fixed;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    overflow:auto;
-    background-color:rgba(0,0,0,0.4);
-    .modalContent {
-        top: 15%;
-        margin: auto;
-        background-color:#fff;
-        position: relative; 
-        padding: 0;
-        outline: 0;
-        width: 600px;
-        border-radius: 5px;
-        section.header {
-            background: linear-gradient(90deg, var(--blueDark) 0%,var(--blue) 35%, var(--blueBright) 100%);
-            color: white;
-            padding: 5px 0 5px 40px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
+.modals {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .modal {
+        z-index:3;
+        display:none;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color:rgba(0,0,0,0.4);
+        position:fixed;
+        left:0;
+        top:0;
+        .modalContent {
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color:#fff;
+            padding: 0;
+            outline: 0;
+            width: 600px;
+            border-radius: 5px;
         }
-        section.content {
-            padding: 20px 30px;
-        }
-        section p:not(:first-child) {
-            margin-top: 30px;
-        }
-        div.repo {
-            cursor: pointer;
-            margin: 5px 10px 5px 0;
-            color: white;
-            background-color: var(--blueButton);
-            padding: 3px 5px;
-            border-radius: 3px;
-            width: fit-content;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-        }
+    }
+    .modalInfo {
+            section.header {
+                background: linear-gradient(90deg, var(--blueDark) 0%,var(--blue) 35%, var(--blueBright) 100%);
+                color: white;
+                padding: 5px 0 5px 40px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            section.content {
+                padding: 20px 30px;
+            }
+            section p:not(:first-child) {
+                margin-top: 30px;
+            }
+            div.repo {
+                cursor: pointer;
+                margin: 5px 10px 5px 0;
+                color: white;
+                background-color: var(--blueButton);
+                padding: 3px 5px;
+                border-radius: 3px;
+                width: fit-content;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+    }
+    
+    .modalEndOfGame {
+            section.header {
+                background: linear-gradient(90deg, var(--blueDark) 0%,var(--blue) 35%, var(--blueBright) 100%);
+                color: white;
+                padding: 5px 0 5px 40px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            section.content {
+                padding: 20px 30px;
+            }
+            section p:not(:first-child) {
+                margin-top: 30px;
+            }
     }
 }
 
-.modalEndOfGame {
-    z-index:3;
-    display:none;
-    position:fixed;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    overflow:auto;
-    background-color:rgba(0,0,0,0.4);
-    .modalContent {
-        top: 15%;
-        margin: auto;
-        background-color:#fff;
-        position: relative; 
-        padding: 0;
-        outline: 0;
-        width: 600px;
-        border-radius: 5px;
-        section.header {
-            background: linear-gradient(90deg, var(--blueDark) 0%,var(--blue) 35%, var(--blueBright) 100%);
-            color: white;
-            padding: 5px 0 5px 40px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-        section.content {
-            padding: 20px 30px;
-        }
-        section p:not(:first-child) {
-            margin-top: 30px;
-        }
-    }
-}
+
 
 .black {
     color: black;
@@ -491,36 +482,28 @@
             }
         }
     }
-    .modalInfo {
-        padding-top:50px;
-        .modalContent {
-            margin: auto;
-            background-color:#fff;
-            position: relative; 
-            padding: 0;
-            outline: 0;
-            width: 400px;
+    .modals {
+        .modal {
+            .modalContent {
+                background-color:#fff;
+                padding: 0;
+                outline: 0;
+                width: 60%;
+            }
+        }
+        .modalInfo {
             section.header {
                 font-size: .8rem;
             }
             section.content {
                 padding: 10px 20px;
-                font-size: .8rem;
+                font-size: .7rem;
             }
             section p:not(:first-child) {
                 margin-top: 10px;
             }
         }
-    }
-    .modalEndOfGame {
-        padding-top:50px;
-        .modalContent {
-            margin: auto;
-            background-color:#fff;
-            position: relative; 
-            padding: 0;
-            outline: 0;
-            width: 400px;
+        .modalEndOfGame {
             section.header {
                 font-size: .8rem;
             }
@@ -578,102 +561,23 @@
             font-size: 1.2rem;
         }
     }
-    .modalInfo {
-        .modalContent {
-            width: 600px;
+    .modals{
+        .modalInfo {
             section.header {
-                font-size: 1.2rem;
-                padding: 10px 0 10px 40px;
-            }
-            section.content {
-                padding: 20px 30px;
                 font-size: 1rem;
             }
-            section p:not(:first-child) {
-                margin-top: 20px;
+            section.content {
+                padding: 10px 20px;
+                font-size: .9rem;
             }
         }
-    }
-    .modalEndOfGame {
-        .modalContent {
-            width: 600px;
+        .modalEndOfGame {
             section.header {
-                font-size: 1.2rem;
-                padding: 10px 0 10px 40px;
-            }
-            section.content {
-                padding: 20px 30px;
                 font-size: 1rem;
             }
-            section p:not(:first-child) {
-                margin-top: 20px;
-            }
-        }
-    }
-}
-
-@media only screen and (min-width: 1366px) and (orientation: landscape) {
-    .card {
-        width: 160px;
-        height: 205px;
-        font-size: 1.6rem;
-        border-radius: 8px;
-    }
-    .cardBackward {
-        border: 5px solid white;
-    }
-    .activeCard {
-        border-width: 10px;
-    }
-    #board {
-        .up {
-            padding: 20px 15px;
-        }
-        .subStacks {
-            margin-top: 120px;
-            .subStack {
-                width: 160px;
-            }
-        }
-    }
-    .info {
-        bottom: 35px;
-        right: 35px;
-        border: 3px solid white;
-        width: 50px;
-        height: 50px;
-        line-height: 1.5;
-        span {
-            font-size: 1.7rem;
-        }
-    }
-    .modalInfo {
-        .modalContent {
-            width: 800px;
-            section.header {
-                font-size: 1.4rem;
-            }
             section.content {
-                padding: 30px 40px;
-                font-size: 1.3rem;
-            }
-            section p:not(:first-child) {
-                margin-top: 30px;
-            }
-        }
-    }
-    .modalEndOfGame {
-        .modalContent {
-            width: 800px;
-            section.header {
-                font-size: 1.4rem;
-            }
-            section.content {
-                padding: 30px 40px;
-                font-size: 1.3rem;
-            }
-            section p:not(:first-child) {
-                margin-top: 30px;
+                padding: 10px 20px;
+                font-size: .9rem;
             }
         }
     }
@@ -705,3 +609,93 @@
     }
 }
   
+
+@media only screen and (min-width: 1366px) and (orientation: landscape) {
+    .card {
+        width: 160px;
+        height: 205px;
+        font-size: 1.6rem;
+        border-radius: 8px;
+    }
+    .cardBackward {
+        border: 5px solid white;
+    }
+    .activeCard {
+        border-width: 10px;
+    }
+    #board {
+        width: 100%;
+        min-height: 100vh;
+        padding: 10px 15px;
+        background-color: var(--green);
+        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        .up {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px 15px;
+            .deck {
+                display: flex;
+                div:first-child {
+                    margin-right: 20px;
+                }
+            }
+            .mainStack {
+                display: flex;
+                div:not(:last-child) {
+                    margin-right: 20px;
+                }
+            }
+        }
+        .subStacks {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 120px;
+            min-height: 75px;
+            .subStack {
+                width: 160px;
+                position: relative;
+                cursor: pointer;
+                .subStackCard {
+                    position: absolute;
+                }
+            }
+        }
+    }
+    
+    .info {
+        bottom: 35px;
+        right: 35px;
+        border: 3px solid white;
+        width: 50px;
+        height: 50px;
+        line-height: 1.5;
+        span {
+            font-size: 1.7rem;
+        }
+    }    
+    .modals{
+        .modalInfo {
+            section.header {
+                font-size: 1.2rem;
+            }
+            section.content {
+                padding: 10px 20px;
+                font-size: 1.2rem;
+            }
+        }
+        .modalEndOfGame {
+            section.header {
+                font-size: 1.2rem;
+            }
+            section.content {
+                padding: 10px 20px;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}

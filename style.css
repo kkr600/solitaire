@@ -643,29 +643,45 @@
   font-weight: 700;
 }
 
-.modalInfo {
+.modals {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modals .modal {
   z-index: 3;
-  position: fixed;
-  left: 0;
-  top: 0;
+  display: none;
   width: 100%;
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
-.modalInfo .modalContent {
-  top: 15%;
-  margin: auto;
+.modals .modal .modalContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   background-color: #fff;
-  position: relative;
   padding: 0;
   outline: 0;
   width: 600px;
   border-radius: 5px;
 }
 
-.modalInfo .modalContent section.header {
+.modals .modalInfo section.header {
   background: -webkit-gradient(linear, left top, right top, from(var(--blueDark)), color-stop(35%, var(--blue)), to(var(--blueBright)));
   background: linear-gradient(90deg, var(--blueDark) 0%, var(--blue) 35%, var(--blueBright) 100%);
   color: white;
@@ -674,15 +690,15 @@
   border-top-right-radius: 5px;
 }
 
-.modalInfo .modalContent section.content {
+.modals .modalInfo section.content {
   padding: 20px 30px;
 }
 
-.modalInfo .modalContent section p:not(:first-child) {
+.modals .modalInfo section p:not(:first-child) {
   margin-top: 30px;
 }
 
-.modalInfo .modalContent div.repo {
+.modals .modalInfo div.repo {
   cursor: pointer;
   margin: 5px 10px 5px 0;
   color: white;
@@ -697,30 +713,7 @@
   bottom: 0;
 }
 
-.modalEndOfGame {
-  z-index: 3;
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modalEndOfGame .modalContent {
-  top: 15%;
-  margin: auto;
-  background-color: #fff;
-  position: relative;
-  padding: 0;
-  outline: 0;
-  width: 600px;
-  border-radius: 5px;
-}
-
-.modalEndOfGame .modalContent section.header {
+.modals .modalEndOfGame section.header {
   background: -webkit-gradient(linear, left top, right top, from(var(--blueDark)), color-stop(35%, var(--blue)), to(var(--blueBright)));
   background: linear-gradient(90deg, var(--blueDark) 0%, var(--blue) 35%, var(--blueBright) 100%);
   color: white;
@@ -729,11 +722,11 @@
   border-top-right-radius: 5px;
 }
 
-.modalEndOfGame .modalContent section.content {
+.modals .modalEndOfGame section.content {
   padding: 20px 30px;
 }
 
-.modalEndOfGame .modalContent section p:not(:first-child) {
+.modals .modalEndOfGame section p:not(:first-child) {
   margin-top: 30px;
 }
 
@@ -1060,46 +1053,30 @@
   #board .subStacks .subStack .subStackCard {
     position: absolute;
   }
-  .modalInfo {
-    padding-top: 50px;
-  }
-  .modalInfo .modalContent {
-    margin: auto;
+  .modals .modal .modalContent {
     background-color: #fff;
-    position: relative;
     padding: 0;
     outline: 0;
-    width: 400px;
+    width: 60%;
   }
-  .modalInfo .modalContent section.header {
+  .modals .modalInfo section.header {
     font-size: .8rem;
   }
-  .modalInfo .modalContent section.content {
+  .modals .modalInfo section.content {
     padding: 10px 20px;
-    font-size: .8rem;
+    font-size: .7rem;
   }
-  .modalInfo .modalContent section p:not(:first-child) {
+  .modals .modalInfo section p:not(:first-child) {
     margin-top: 10px;
   }
-  .modalEndOfGame {
-    padding-top: 50px;
-  }
-  .modalEndOfGame .modalContent {
-    margin: auto;
-    background-color: #fff;
-    position: relative;
-    padding: 0;
-    outline: 0;
-    width: 400px;
-  }
-  .modalEndOfGame .modalContent section.header {
+  .modals .modalEndOfGame section.header {
     font-size: .8rem;
   }
-  .modalEndOfGame .modalContent section.content {
+  .modals .modalEndOfGame section.content {
     padding: 10px 20px;
     font-size: .8rem;
   }
-  .modalEndOfGame .modalContent section p:not(:first-child) {
+  .modals .modalEndOfGame section p:not(:first-child) {
     margin-top: 10px;
   }
 }
@@ -1141,94 +1118,19 @@
   .info span {
     font-size: 1.2rem;
   }
-  .modalInfo .modalContent {
-    width: 600px;
-  }
-  .modalInfo .modalContent section.header {
-    font-size: 1.2rem;
-    padding: 10px 0 10px 40px;
-  }
-  .modalInfo .modalContent section.content {
-    padding: 20px 30px;
+  .modals .modalInfo section.header {
     font-size: 1rem;
   }
-  .modalInfo .modalContent section p:not(:first-child) {
-    margin-top: 20px;
+  .modals .modalInfo section.content {
+    padding: 10px 20px;
+    font-size: .9rem;
   }
-  .modalEndOfGame .modalContent {
-    width: 600px;
-  }
-  .modalEndOfGame .modalContent section.header {
-    font-size: 1.2rem;
-    padding: 10px 0 10px 40px;
-  }
-  .modalEndOfGame .modalContent section.content {
-    padding: 20px 30px;
+  .modals .modalEndOfGame section.header {
     font-size: 1rem;
   }
-  .modalEndOfGame .modalContent section p:not(:first-child) {
-    margin-top: 20px;
-  }
-}
-
-@media only screen and (min-width: 1366px) and (orientation: landscape) {
-  .card {
-    width: 160px;
-    height: 205px;
-    font-size: 1.6rem;
-    border-radius: 8px;
-  }
-  .cardBackward {
-    border: 5px solid white;
-  }
-  .activeCard {
-    border-width: 10px;
-  }
-  #board .up {
-    padding: 20px 15px;
-  }
-  #board .subStacks {
-    margin-top: 120px;
-  }
-  #board .subStacks .subStack {
-    width: 160px;
-  }
-  .info {
-    bottom: 35px;
-    right: 35px;
-    border: 3px solid white;
-    width: 50px;
-    height: 50px;
-    line-height: 1.5;
-  }
-  .info span {
-    font-size: 1.7rem;
-  }
-  .modalInfo .modalContent {
-    width: 800px;
-  }
-  .modalInfo .modalContent section.header {
-    font-size: 1.4rem;
-  }
-  .modalInfo .modalContent section.content {
-    padding: 30px 40px;
-    font-size: 1.3rem;
-  }
-  .modalInfo .modalContent section p:not(:first-child) {
-    margin-top: 30px;
-  }
-  .modalEndOfGame .modalContent {
-    width: 800px;
-  }
-  .modalEndOfGame .modalContent section.header {
-    font-size: 1.4rem;
-  }
-  .modalEndOfGame .modalContent section.content {
-    padding: 30px 40px;
-    font-size: 1.3rem;
-  }
-  .modalEndOfGame .modalContent section p:not(:first-child) {
-    margin-top: 30px;
+  .modals .modalEndOfGame section.content {
+    padding: 10px 20px;
+    font-size: .9rem;
   }
 }
 
@@ -1255,6 +1157,108 @@
   }
   #board .subStacks .subStack {
     width: 100px;
+  }
+}
+
+@media only screen and (min-width: 1366px) and (orientation: landscape) {
+  .card {
+    width: 160px;
+    height: 205px;
+    font-size: 1.6rem;
+    border-radius: 8px;
+  }
+  .cardBackward {
+    border: 5px solid white;
+  }
+  .activeCard {
+    border-width: 10px;
+  }
+  #board {
+    width: 100%;
+    min-height: 100vh;
+    padding: 10px 15px;
+    background-color: var(--green);
+    border-radius: 3px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 0;
+  }
+  #board .up {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 20px 15px;
+  }
+  #board .up .deck {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #board .up .deck div:first-child {
+    margin-right: 20px;
+  }
+  #board .up .mainStack {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #board .up .mainStack div:not(:last-child) {
+    margin-right: 20px;
+  }
+  #board .subStacks {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    margin-top: 120px;
+    min-height: 75px;
+  }
+  #board .subStacks .subStack {
+    width: 160px;
+    position: relative;
+    cursor: pointer;
+  }
+  #board .subStacks .subStack .subStackCard {
+    position: absolute;
+  }
+  .info {
+    bottom: 35px;
+    right: 35px;
+    border: 3px solid white;
+    width: 50px;
+    height: 50px;
+    line-height: 1.5;
+  }
+  .info span {
+    font-size: 1.7rem;
+  }
+  .modals .modalInfo section.header {
+    font-size: 1.2rem;
+  }
+  .modals .modalInfo section.content {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+  }
+  .modals .modalEndOfGame section.header {
+    font-size: 1.2rem;
+  }
+  .modals .modalEndOfGame section.content {
+    padding: 10px 20px;
+    font-size: 1.2rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

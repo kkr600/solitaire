@@ -18,6 +18,7 @@
     --blueBright: #00d4ff;
     --blue: #090979;
     --blueDark: #020024;
+    --blueButton: #072d91;
     --red: #f00;
     --green: #008000;
     --greenBright:#acff2f;
@@ -234,7 +235,7 @@
 
 .modalInfo {
     z-index:3;
-    display:none;
+    // display:none;
     position:fixed;
     left:0;
     top:0;
@@ -263,6 +264,18 @@
         }
         section p:not(:first-child) {
             margin-top: 30px;
+        }
+        div.repo {
+            cursor: pointer;
+            margin: 5px 10px 5px 0;
+            color: white;
+            background-color: var(--blueButton);
+            padding: 3px 5px;
+            border-radius: 3px;
+            width: fit-content;
+            position: absolute;
+            right: 0;
+            bottom: 0;
         }
     }
 }

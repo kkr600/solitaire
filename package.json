@@ -1,10 +1,11 @@
 {
-  "homepage": "https://kkr600.github.io/solitaire/",
+  "homepage": "https://github.com/kkr600/solitaire#readme",
   "name": "solitaire",
   "version": "1.0.0",
   "description": "",
   "main": "Game.js",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.0",
     "git-dependency": "^0.1.0",
     "node-sass": "^4.14.1"
   },
@@ -22,6 +23,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kkr600/solitaire/issues"
-  },
-  "homepage": "https://github.com/kkr600/solitaire#readme"
+  }
 }

@@ -38,9 +38,8 @@ class Game {
             const modal = document.querySelector('.modalInfo');
             modal.setAttribute('style',"display: none");
         })
-        document.querySelector('.modalEndOfGame').addEventListener('click', ()=>{
-            location.reload();
-        })
+        document.querySelector('.modalEndOfGame').addEventListener('click', ()=>{ location.reload(); });
+        document.querySelector('.repo').addEventListener('click', ()=>{window.open("https://github.com/kkr600/solitaire","_blank");})
     }
     deactivateAll() {
         activeCard = deckOpened.deactivate();
